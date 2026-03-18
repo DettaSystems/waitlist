@@ -69,7 +69,9 @@
     .hero-logo {
       display: flex;
       justify-content: center;
-      margin-bottom: 40px;
+      align-items: center;
+      margin: 0 auto 48px;
+      width: 100%;
     }
 
     .hero h1 {
@@ -916,7 +918,7 @@
     // Find it at: https://formspree.io/forms → your form → Integration → Form ID
     // It looks like: xpwzgkbn (8 characters)
     // ─────────────────────────────────────────────────────────
-    var FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
+    var FORMSPREE_URL = 'https://formspree.io/f/mojkywvp';
 
     // ── FAQ Accordion ──
     function toggleFaq(trigger) {
