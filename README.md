@@ -1,5 +1,3 @@
-[waitlist-standalone.html](https://github.com/user-attachments/files/26096442/waitlist-standalone.html)
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
