@@ -1,4 +1,5 @@
-# waitlist<!DOCTYPE html>
+[waitlist-standalone.html](https://github.com/user-attachments/files/26096442/waitlist-standalone.html)
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -917,7 +918,7 @@
     // Find it at: https://formspree.io/forms → your form → Integration → Form ID
     // It looks like: xpwzgkbn (8 characters)
     // ─────────────────────────────────────────────────────────
-    var FORMSPREE_URL = 'https://formspree.io/f/mojkywvp';
+    var FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID';
 
     // ── FAQ Accordion ──
     function toggleFaq(trigger) {
