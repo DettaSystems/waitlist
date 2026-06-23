@@ -1335,18 +1335,9 @@
   ]
 }
   </script>
-  <!-- ============================================================
-       ANALYTICS (cookieless, privacy-first) — DISABLED STUB.
-       To turn on: create a free account, then uncomment ONE block.
-       Cookieless = no consent banner needed, but disclose it in the
-       privacy policy. Do NOT add GA4 here (it sets cookies).
-
-       Option A — Plausible (https://plausible.io):
-       <script defer data-domain="detta.us" src="https://plausible.io/js/script.js"></script>
-
-       Option B — Fathom (https://usefathom.com):
-       <script src="https://cdn.usefathom.com/script.js" data-site="YOUR_SITE_ID" defer></script>
-       ============================================================ -->
+  <!-- Plausible — privacy-first, cookieless analytics (no consent banner needed; disclose in privacy policy) -->
+  <script defer data-domain="detta.us" src="https://plausible.io/js/script.js"></script>
+  <script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) };</script>
 </head>
 <body>
 
@@ -1825,6 +1816,7 @@
         function() {
           document.getElementById('waitlistForm').style.display = 'none';
           document.getElementById('successState').classList.add('active');
+          try { if (window.plausible) window.plausible('Signup'); } catch (e) {}
         },
         function() {
           err.textContent = 'Something went wrong. Please try again.';
