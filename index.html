@@ -477,7 +477,7 @@
       box-shadow: 0 2px 8px rgba(13,79,79,0.2);
       transition: all 0.2s;
     }
-    .wl-submit:hover { box-shadow: 0 4px 16px rgba(13,79,79,0.3); }
+    .wl-submit:hover { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(13,79,79,0.32); }
     .wl-submit:active { transform: scale(0.98); }
     .wl-submit:disabled { opacity: 0.6; cursor: not-allowed; }
     .wl-submit svg {
@@ -1688,8 +1688,8 @@
       .calc-disclaimer { max-width: 760px; margin: 24px auto 0; text-align: center; font-size: 12px; color: var(--detta-ink-light); line-height: 1.6; }
       .calc-reviewed { text-align: center; font-size: 12px; font-weight: 600; color: var(--detta-ink-mid); margin: 8px auto 0; }
       .calc-cta { text-align: center; margin-top: 20px; }
-      .calc-cta-btn { display: inline-block; background: var(--detta-teal); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 28px; border-radius: 12px; }
-      .calc-cta-btn:hover { background: var(--detta-teal-mid); }
+      .calc-cta-btn { display: inline-block; background: linear-gradient(135deg, #0D4F4F 0%, #1A7070 100%); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 28px; border-radius: 12px; box-shadow: 0 2px 10px rgba(13,79,79,0.22); transition: transform 0.18s ease, box-shadow 0.18s ease; }
+      .calc-cta-btn:hover { transform: translateY(-1px); box-shadow: 0 7px 22px rgba(13,79,79,0.30); }
       @media (forced-colors: active) { .calc-cta-btn, .calc-plan-card.best { border: 1px solid; } }
     </style>
 
