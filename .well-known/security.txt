@@ -1,0 +1,5 @@
+# Security contact for detta.us
+Contact: mailto:support@detta.us
+Expires: 2027-06-24T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.detta.us/.well-known/security.txt
