@@ -626,15 +626,28 @@
     /* Desktop step icons row with connecting lines */
     .steps-icons-row {
       display: none;
-      align-items: center;
-      justify-content: center;
       margin-bottom: 40px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
     @media (min-width: 768px) {
-      .steps-icons-row { display: flex; }
+      .steps-icons-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        align-items: center;
+        justify-items: center;
+        position: relative;
+      }
+      .steps-icons-row::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: 15%;
+        right: 15%;
+        height: 2px;
+        border-radius: 1px;
+        background: linear-gradient(90deg, rgba(13,79,79,0.3), rgba(26,90,138,0.3), rgba(26,122,74,0.3));
+        z-index: 0;
+      }
     }
     .step-icon-box {
       width: 56px;
@@ -645,6 +658,8 @@
       justify-content: center;
       flex-shrink: 0;
       background: var(--detta-card);
+      position: relative;
+      z-index: 1;
     }
     .step-icon-box svg {
       width: 24px;
@@ -671,11 +686,7 @@
     .step-icon-box-2 svg { stroke: #1A7A4A; }
 
     .step-connector {
-      flex: 1;
-      height: 2px;
-      margin: 0 -1px;
-      border-radius: 1px;
-      transform-origin: left center;
+      display: none;
     }
     .step-connector-0 {
       background: linear-gradient(90deg, rgba(13,79,79,0.25), rgba(26,90,138,0.25));
@@ -1595,7 +1606,7 @@
       .calc-head p { color: var(--detta-ink-mid); font-size: 17px; line-height: 1.6; margin: 0; }
       .calc-head strong { color: var(--detta-teal); }
       .calc-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-      @media (min-width: 860px) { .calc-grid { grid-template-columns: 1.05fr 1fr; align-items: start; } }
+      @media (min-width: 860px) { .calc-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
       .calc-input-card, .calc-results { background: var(--detta-card); border: 1px solid var(--detta-muted); border-radius: var(--radius-lg, 16px); padding: 24px; }
       .calc-card-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; margin-bottom: 14px; }
       .calc-field { display: flex; flex-direction: column; gap: 5px; }
@@ -1605,6 +1616,7 @@
       .calc-input { border: 1px solid var(--detta-muted); border-radius: 12px; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--detta-ink); width: 100%; background: #fff; }
       .calc-money .calc-input { border: 0; padding: 11px 6px; }
       .calc-input:focus, .calc-money:focus-within { outline: 2px solid var(--detta-teal); outline-offset: 1px; }
+      .calc-money .calc-input:focus { outline: none; }
       .calc-suffix { color: var(--detta-ink-light); font-size: 15px; padding-right: 4px; }
       .calc-remove { background: none; border: 1px solid var(--detta-muted); color: var(--detta-ink-light); border-radius: 10px; width: 40px; height: 42px; cursor: pointer; font-size: 18px; line-height: 1; }
       .calc-remove:hover { border-color: var(--detta-teal); color: var(--detta-teal); }
@@ -1856,13 +1868,10 @@
   <section class="set-section" id="settlement" aria-labelledby="set-heading">
     <style>
       .set-section { background: var(--detta-white); padding: 72px 24px; }
+      .set-section .calc-head { max-width: 880px; }
+      .set-section .calc-head h2 { font-size: clamp(25px, 3.1vw, 32px); }
       .set-select { border: 1px solid var(--detta-muted); border-radius: 12px; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--detta-ink); width: 100%; background: #fff; }
       .set-select:focus { outline: 2px solid var(--detta-teal); outline-offset: 1px; }
-      .set-script { background: var(--detta-teal); color: #fff; border-radius: 12px; padding: 16px 18px; }
-      .set-script h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 10px; color: #Bfe3e0; }
-      .set-script ol { margin: 0; padding-left: 18px; }
-      .set-script li { font-size: 14px; line-height: 1.55; margin: 7px 0; color: #F2F8F7; }
-      .set-script li b { color: #fff; }
       .set-caveats { list-style: none; margin: 0; padding: 0; }
       .set-caveats li { font-size: 12.5px; line-height: 1.55; color: var(--detta-ink-mid); padding-left: 18px; position: relative; margin: 6px 0; }
       .set-caveats li::before { content: "!"; position: absolute; left: 0; top: 0; color: var(--detta-amber); font-weight: 700; }
@@ -1954,22 +1963,6 @@
           else msg = 'Your ' + fmt(lump) + ' is about ' + pct + '%, more than you may need to offer. Consider opening lower, around ' + fmt(lowAmt) + '.';
           resultsEl.appendChild(el('div', 'calc-takeaway', msg));
         }
-
-        // Call script
-        var box = el('div', 'set-script');
-        box.appendChild(el('h4', null, 'What to say on the call'));
-        var ol = el('ol');
-        var lines = [
-          'I am calling about my account ending in [last 4]. I have fallen behind and I am working to resolve this myself.',
-          'I can make a one-time payment of ' + fmt(lowAmt) + ' to settle the account in full.',
-          'If they decline: I may be able to go up to ' + fmt(midAmt) + ', but that is the most I can do.',
-          'Before I send any payment, I need the agreement in writing, including that the account will be reported as "settled in full."',
-          'I am not able to give access to my bank account or set up automatic withdrawals. I will send payment once I have the written agreement.',
-          'Will you issue a 1099-C for any forgiven amount?'
-        ];
-        lines.forEach(function (t) { ol.appendChild(el('li', null, t)); });
-        box.appendChild(ol);
-        resultsEl.appendChild(box);
 
         // Caveats
         var ul = el('ul', 'set-caveats');
