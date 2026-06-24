@@ -1,11 +1,25 @@
 # Detta.us Discoverability Gameplan — SEO / GEO / AEO
 
-_Master plan for making the Detta waitlist (detta.us) findable across classic search (SEO), generative AI engines (GEO), and answer engines (AEO). Written for a non-technical owner — plain English, jargon explained in one phrase. Last updated 2026-06-23._
+_Master plan for making the Detta waitlist (detta.us) findable across classic search (SEO), generative AI engines (GEO), and answer engines (AEO). Written for a non-technical owner — plain English, jargon explained in one phrase. Last updated 2026-06-24. Companion docs: the search-research paper [audits/cc-debt-search-research-2026-06-24.md](audits/cc-debt-search-research-2026-06-24.md) (how stuck credit-card-debt consumers search) and [vercel-migration-plan.md](vercel-migration-plan.md)._
 
 > **What these three letters mean**
 > - **SEO** — Search Engine Optimization: ranking in Google/Bing's normal blue-link results.
 > - **GEO** — Generative Engine Optimization: being _quoted/cited inside_ AI answers (ChatGPT, Perplexity, Gemini, Google AI Overviews).
 > - **AEO** — Answer Engine Optimization: being the extracted answer box (featured snippets, "People Also Ask", voice).
+
+---
+
+## 0. Status — what's now LIVE on detta.us (updated 2026-06-24)
+
+Since this plan was written, most of Phase 0 plus several Phase 1/2 items have shipped (PRs #1–#18 on `DettaSystems/waitlist`). **Live now:**
+
+- **Technical/SEO foundation:** identity JSON-LD (Organization/WebSite/SoftwareApplication/FAQPage, enriched with `knowsAbout`/`areaServed`/`featureList`), fixed og-image, AI-crawler-explicit robots.txt + sitemap (incl. legal pages), `.well-known/security.txt`, meta polish, accessibility primitives (skip link, `<main>`, aria-live, forced-colors), **self-hosted fonts** (Google CDN dropped), and all em/en dashes removed.
+- **Analytics:** Plausible (cookieless) live with a `Signup` goal.
+- **Legal suite:** lawyer-grade **/privacy**, **/terms** (binding arbitration + class-action waiver), **/trust** — published, indexable, footer-linked.
+- **Two interactive tools** (the research's #1 lever): a **payoff calculator** (snowball vs avalanche) and a **settlement & negotiation planner** — both 100% client-side (debt numbers never leave the browser), math/ranges ported from the platform's vetted engines.
+- **YMYL trust layer:** "Reviewed by a consumer-protection attorney" byline on the money tools + a "Who builds and reviews Detta?" section on /trust (signed generically for now; swap to a named attorney + `Person`/`reviewedBy` schema when available).
+
+**Still owner-gated:** Search Console + Bing; create LinkedIn/Crunchbase/X (then wire into `sameAs`); run the roundup-pitch campaign (§5); name the reviewing attorney; decide the Vercel migration. **Still CMS/product-gated:** the content hub (§8b).
 
 ---
 
@@ -18,6 +32,8 @@ Detta.us is a clean, fast, single-page waitlist that is **technically healthy bu
 ---
 
 ## 2. Current scorecard
+
+_(This is the pre-work baseline from 2026-06-23; see §0 for what is now live — several of these have since improved.)_
 
 | Dimension | Score | Why |
 |---|---|---|
@@ -52,11 +68,11 @@ Detta.us is a clean, fast, single-page waitlist that is **technically healthy bu
 | 4 | **sitemap.xml** (one URL). | ✅ PR #1 |
 | 5 | **Meta polish** — og image dimensions/alt, og:site_name, twitter:image:alt, author, explicit index,follow. | ✅ PR #1 |
 | 6 | **Form honeypot** (`_gotcha`) to cut spam signups. | ✅ PR #1 |
-| 7 | **Cookieless analytics** (Plausible or Fathom) — stub added; **create the account + uncomment** to activate. Don't use GA4 (cookies + consent banner). | ◻️ stub in PR #1; activate |
+| 7 | **Cookieless analytics** (Plausible or Fathom) — stub added; **create the account + uncomment** to activate. Don't use GA4 (cookies + consent banner). | ✅ Plausible live + `Signup` goal |
 | 8 | **Search Console (Domain property via DNS TXT) + Bing Webmaster Tools** (import from Google); submit sitemap. | ◻️ owner action |
 | 9 | **Confirm no `noindex`** (confirmed clean) and fonts use `&display=swap` (already present). | ✅ verified |
-| 10 | **Real Privacy / Terms / Legal pages** (currently `mailto:` links — must be written, not just linked). | ◻️ _(deferred — legal)_ |
-| 11 | **"Is Detta legit? / Trust & Safety" page** answering skeptic queries. | ◻️ _(deferred — claims)_ |
+| 10 | **Real Privacy / Terms / Legal pages** (currently `mailto:` links — must be written, not just linked). | ✅ /privacy + /terms live (lawyer-grade) |
+| 11 | **"Is Detta legit? / Trust & Safety" page** answering skeptic queries. | ✅ /trust live |
 | 12 | **Soften outcome-implying copy** ("keep every dollar you save" borders on a guarantee). | ◻️ _(deferred — brand voice)_ |
 
 **Do NOT "fix" the www-vs-apex canonical** — verified correct: `detta.us` 301-redirects cleanly to `www.detta.us` and the canonical matches. Re-doing it is a no-op.
@@ -113,6 +129,37 @@ Stop _only_ polishing your own page; start getting Detta **named inside other pe
 - Keep the **"self-help software, not legal or financial advice"** disclaimer (already present in footer) — compliance _and_ an honesty signal.
 - **Soften outcome-implying copy** toward "keep the fees you'd have paid".
 - Publish **real** privacy/terms pages (not mailto links).
+
+---
+
+## 8b. The awareness-gap funnel & content map (from the 2026-06-24 search research)
+
+A dedicated deep-research pass (full paper: [audits/cc-debt-search-research-2026-06-24.md](audits/cc-debt-search-research-2026-06-24.md)) studied **how stuck credit-card-debt consumers actually search**.
+
+**The core insight — the awareness gap.** People buried in credit-card debt search like people in pain ("drowning in credit card debt", "can't afford my minimum"), and **most don't know that resolving debt _themselves_ is even an option.** The SERPs push them into a false binary: struggle alone, or hand it to a for-profit settlement company. The FTC/CFPB say "you can do this yourself, for free" — but no software brand owns that calm middle path. **That gap is Detta's single biggest opportunity.**
+
+**The honest verdict.** Organic search will not be a meaningful waitlist channel for **12–18 months**. Head terms are owned by DR-80+ incumbents (NerdWallet/Bankrate/Experian/CFPB) and cannibalized by AI Overviews (~83% no-click). **YMYL E-E-A-T is a hard gate, not a tiebreaker** — without a named credentialed reviewer, content is filtered out regardless of quality (this is why the attorney-review layer matters). Realistic wins live in the **long-tail DIY/procedural corner**, **interactive tools the AI can't replicate**, **authentic Reddit presence**, and the **12–18-month entity/citation build**. For pre-launch signups, **paid + community + partnerships** beat organic.
+
+**The funnel — panic to signup (without ever posing as a debt-relief company):**
+1. **Awareness:** an overwhelmed searcher finds a Detta page / Reddit answer / AI citation that _validates the feeling_ and reframes it ("your debts are countable, not bottomless").
+2. **Education:** name every legitimate path honestly, cite FTC/CFPB, position Detta as _the software for the DIY path_ — beside nonprofits, not instead of them.
+3. **Demonstration:** a free interactive tool lets them feel control in 5 minutes (the tool _is_ the value).
+4. **Conversion:** email-gated "save your plan / get early access" — never "we'll settle your debt."
+
+**Cluster → asset map (winnability × impact).** Most article-shaped assets need a CONTENT HUB the static page lacks; tools can ship now.
+
+| Priority | Search cluster | Asset | Status |
+|---|---|---|---|
+| P1 | DIY payoff ("how to pay off", "snowball vs avalanche") | **Payoff calculator** | ✅ shipped |
+| P1 | Negotiate ("what to say", "how much to offer") | **Settlement & negotiation planner** | ✅ shipped |
+| P2 | Negotiate / collections | Debt-validation + settlement **letter generators** | ⛔ deliberately NOT free — core paid product |
+| P2 | "Help / options" (option-unaware) | **"Do I need a settlement company?"** honest comparison (flagship third-option page) | content hub |
+| P2 | Consequences ("statute of limitations", "can they sue") | Attorney-reviewed **SOL table + rights toolkit** | content hub |
+| P3 | Emotional distress | Empathetic **on-ramp explainer** (crisis-resources-first) | content hub |
+| P3 | DIY payoff | Programmatic **"$X in credit card debt" worked-plan pages** | content hub |
+| Supporting | Debt depression/anxiety | Crisis-aware pages (lead with 988, never a conversion page) | content hub |
+
+**Compliance spine of the funnel:** every step is "a tool _you_ operate", "you pay creditors directly", "no funds held", "no outcome promised". Crisis-adjacent queries lead with 988/mental-health resources, never as conversion pages.
 
 ---
 
@@ -189,10 +236,10 @@ Stop _only_ polishing your own page; start getting Detta **named inside other pe
 
 ## 13. Phased roadmap
 
-**Phase 0 — this week (same-day, free):** identity + FAQ JSON-LD; robots.txt + sitemap.xml; fix og-image; meta polish; honeypot; analytics stub → _shipped in PR #1_. Remaining owner actions: activate analytics, set up Search Console + Bing, and (legal-gated) ship real Privacy/Terms + Trust page and soften guarantee copy.
+**Phase 0 — this week (same-day, free):** identity + FAQ JSON-LD; robots.txt + sitemap.xml; fix og-image; meta polish; honeypot; analytics → **✅ DONE** (PRs #1–#18). Analytics live, legal pages live, accessibility + self-hosted fonts + the two tools + the attorney-review trust layer all shipped. Remaining owner actions: set up Search Console + Bing.
 _Payoff: a clean, indexable, shareable, entity-grounded page that wins **branded** search and is AI-parseable. (Does not bring non-branded traffic — correct for a waitlist.)_
 
-**Phase 1 — weeks 2–4 (off-page, mostly founder time):** claim LinkedIn/Crunchbase/X + GitHub org page with identical messaging wired into `sameAs`; software directories + BetaList + 30–50 directories; HARO/Qwoted; **start the roundup-pitch campaign (§5)**; stand up the founder identity; email nurture.
+**Phase 1 — weeks 2–4 (off-page, mostly founder time):** claim LinkedIn/Crunchbase/X + GitHub org page with identical messaging wired into `sameAs`; software directories + BetaList + 30–50 directories; HARO/Qwoted; **start the roundup-pitch campaign (§5)**; stand up the (named) founder/attorney identity; email nurture. _(The two tools and the attorney-review trust layer are already shipped.)_
 _Payoff: first real entity signals and backlinks — the groundwork AI engines and Knowledge Panels need. Compounds over months._
 
 **Phase 2 — month 2+ (infrastructure — the ceiling):** stand up a real **resources/education hub** — 5–10 evergreen, answer-first explainers ("what is a debt validation letter", "secured vs unsecured debt") with named authors, CFPB/FTC citations, and Article schema. Prioritize "what is / how does X work" explainers (AI Overviews cover ~91% of those finance queries).
@@ -222,7 +269,7 @@ _Payoff: the only path to non-branded organic traffic and meaningful AI citation
 
 **Simply _gated_ on the product launching / a real content site existing** (not gaps — just not startable yet): the content hub, real reviews (Trustpilot/G2), Product Hunt launch day, Wikipedia/Wikidata, and the original-dataset play.
 
-**The one thing to do first:** the broken share image and analytics (Phase 0) — then run the earned-media roundup campaign.
+**Where it stands now (2026-06-24):** Phase 0 is shipped; analytics, the legal suite, two interactive tools, and the attorney-review trust layer are live. **The next highest-leverage moves are owner-gated:** name the reviewing attorney (unlocks the full YMYL signal + `Person` schema), set up Search Console + the LinkedIn/Crunchbase/X profiles, and run the roundup-pitch campaign (§5). The real organic ceiling remains the **content hub (§8b)** — a CMS + named author.
 
 ---
 
