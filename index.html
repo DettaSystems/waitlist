@@ -516,6 +516,22 @@
       animation: wlFadeUp 0.6s cubic-bezier(0.25,0.46,0.45,0.94) both;
     }
     .success-state.active { display: block; }
+    .success-survey { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--detta-muted); }
+    .survey-q { font-size: 14px; color: var(--detta-ink-mid); line-height: 1.5; margin: 0 0 10px; }
+    .survey-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .survey-btn { background: #fff; border: 1px solid var(--detta-muted); border-radius: 10px; padding: 8px 16px; font: inherit; font-size: 14px; font-weight: 600; color: var(--detta-teal); cursor: pointer; }
+    .survey-btn:hover { border-color: var(--detta-teal); background: var(--detta-teal-light); }
+    .survey-thanks { font-size: 14px; color: var(--detta-success); font-weight: 600; margin: 14px 0 0; }
+    .success-referral { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--detta-muted); }
+    .referral-lead { font-size: 14px; color: var(--detta-ink-mid); margin: 0 0 10px; }
+    .referral-row { display: flex; gap: 8px; }
+    .referral-input { flex: 1; min-width: 0; border: 1px solid var(--detta-muted); border-radius: 10px; padding: 9px 11px; font: inherit; font-size: 13px; color: var(--detta-ink-mid); background: #fff; }
+    .referral-copy { background: var(--detta-teal); color: #fff; border: 0; border-radius: 10px; padding: 9px 16px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .referral-copy:hover { background: var(--detta-teal-mid); }
+    .referral-share { margin-top: 10px; font-size: 13px; }
+    .referral-share-link { color: var(--detta-teal-mid); cursor: pointer; text-decoration: none; font-weight: 600; }
+    .referral-share-link:hover { text-decoration: underline; }
+    .referral-dot { color: var(--detta-ink-light); margin: 0 6px; }
     .success-icon {
       width: 64px;
       height: 64px;
@@ -1473,6 +1489,28 @@
                 </div>
                 <h3 id="successHeading">You're on the list!</h3>
                 <p>We'll email you when it's your turn.</p>
+
+                <div class="success-survey" id="successSurvey">
+                  <p class="survey-q">Quick question: before today, did you know you could resolve debt yourself, without a settlement company?</p>
+                  <div class="survey-btns">
+                    <button type="button" class="survey-btn" data-a="knew">Yes, I knew</button>
+                    <button type="button" class="survey-btn" data-a="didnt">No, I didn't</button>
+                  </div>
+                </div>
+                <p class="survey-thanks" id="surveyThanks" hidden>Thanks, that genuinely helps us.</p>
+
+                <div class="success-referral" id="successReferral">
+                  <p class="referral-lead">Want earlier access? Share your link, referrers get priority.</p>
+                  <div class="referral-row">
+                    <input type="text" id="referralLink" class="referral-input" readonly aria-label="Your invite link" />
+                    <button type="button" id="copyRefBtn" class="referral-copy">Copy</button>
+                  </div>
+                  <div class="referral-share">
+                    <a id="shareX" class="referral-share-link" target="_blank" rel="noopener">Share on X</a>
+                    <span class="referral-dot">&middot;</span>
+                    <a id="shareEmail" class="referral-share-link">Email a friend</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -2196,9 +2234,15 @@
       var _gc = document.getElementById('gotchaField');
       body._gotcha = _gc ? _gc.value : '';
 
-      // Capture referral source
-      var ref = new URLSearchParams(window.location.search).get('ref');
+      // Attribution: referral source, UTM params, referrer, this visitor's referral code
+      var params = new URLSearchParams(window.location.search);
+      var ref = params.get('ref');
       if (ref) body.source = ref;
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (k) {
+        var v = params.get(k); if (v) body[k] = v;
+      });
+      if (document.referrer) body.referrer = document.referrer;
+      body.referralCode = window.__dettaRef || '';
 
       fetch(FORMSPREE_URL, {
         method: 'POST',
@@ -2252,6 +2296,42 @@
         }
       );
     });
+
+    // ── Growth & validation: referral code, awareness survey, share ──
+    (function () {
+      var rc;
+      try { rc = localStorage.getItem('detta_ref'); } catch (e) {}
+      if (!rc) { rc = Date.now().toString(36) + Math.random().toString(36).slice(2, 6); try { localStorage.setItem('detta_ref', rc); } catch (e) {} }
+      window.__dettaRef = rc;
+      function ev(n) { try { if (window.plausible) window.plausible(n); } catch (e) {} }
+
+      var survey = document.getElementById('successSurvey');
+      var thanks = document.getElementById('surveyThanks');
+      if (survey) {
+        Array.prototype.forEach.call(survey.querySelectorAll('.survey-btn'), function (b) {
+          b.addEventListener('click', function () {
+            ev('Awareness: ' + (b.getAttribute('data-a') === 'knew' ? 'Knew DIY' : 'Did not know'));
+            survey.hidden = true;
+            if (thanks) thanks.hidden = false;
+          });
+        });
+      }
+
+      var url = 'https://www.detta.us/?ref=' + rc;
+      var link = document.getElementById('referralLink');
+      if (link) link.value = url;
+      var copyBtn = document.getElementById('copyRefBtn');
+      if (copyBtn) copyBtn.addEventListener('click', function () {
+        var done = function () { copyBtn.textContent = 'Copied'; ev('Referral: copy'); setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done).catch(function () { if (link) { link.select(); document.execCommand('copy'); done(); } });
+        } else if (link) { link.select(); document.execCommand('copy'); done(); }
+      });
+      var sx = document.getElementById('shareX');
+      if (sx) { sx.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent("I'm resolving my debt myself with Detta: self-help software, no escrow. Join the waitlist:") + '&url=' + encodeURIComponent(url); sx.addEventListener('click', function () { ev('Referral: share-x'); }); }
+      var se = document.getElementById('shareEmail');
+      if (se) { se.href = 'mailto:?subject=' + encodeURIComponent("Thought you'd want this") + '&body=' + encodeURIComponent("I just joined the Detta waitlist. It's self-help software to resolve debt yourself, no escrow. Join here: " + url); se.addEventListener('click', function () { ev('Referral: share-email'); }); }
+    })();
   </script>
 
 </body>
