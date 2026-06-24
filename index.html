@@ -1583,6 +1583,273 @@
   <!-- ═══════════════════════════════════════════════════════════
        TRUST SECTION
        ═══════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════
+       PAYOFF CALCULATOR (self-help tool; all math runs in-browser)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="calc-section" id="calculator" aria-labelledby="calc-heading">
+    <style>
+      .calc-section { background: var(--detta-teal-light); padding: 72px 24px; }
+      .calc-inner { max-width: 1000px; margin: 0 auto; }
+      .calc-head { text-align: center; max-width: 640px; margin: 0 auto 36px; }
+      .calc-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 4vw, 40px); color: var(--detta-teal); letter-spacing: -0.02em; margin: 0 0 12px; }
+      .calc-head p { color: var(--detta-ink-mid); font-size: 17px; line-height: 1.6; margin: 0; }
+      .calc-head strong { color: var(--detta-teal); }
+      .calc-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+      @media (min-width: 860px) { .calc-grid { grid-template-columns: 1.05fr 1fr; align-items: start; } }
+      .calc-input-card, .calc-results { background: var(--detta-card); border: 1px solid var(--detta-muted); border-radius: var(--radius-lg, 16px); padding: 24px; }
+      .calc-card-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; margin-bottom: 14px; }
+      .calc-field { display: flex; flex-direction: column; gap: 5px; }
+      .calc-field > span { font-size: 12px; font-weight: 600; color: var(--detta-ink-mid); letter-spacing: 0.01em; }
+      .calc-money { display: flex; align-items: center; border: 1px solid var(--detta-muted); border-radius: 12px; padding: 0 10px; background: #fff; }
+      .calc-money > span { color: var(--detta-ink-light); font-size: 15px; }
+      .calc-input { border: 1px solid var(--detta-muted); border-radius: 12px; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--detta-ink); width: 100%; background: #fff; }
+      .calc-money .calc-input { border: 0; padding: 11px 6px; }
+      .calc-input:focus, .calc-money:focus-within { outline: 2px solid var(--detta-teal); outline-offset: 1px; }
+      .calc-suffix { color: var(--detta-ink-light); font-size: 15px; padding-right: 4px; }
+      .calc-remove { background: none; border: 1px solid var(--detta-muted); color: var(--detta-ink-light); border-radius: 10px; width: 40px; height: 42px; cursor: pointer; font-size: 18px; line-height: 1; }
+      .calc-remove:hover { border-color: var(--detta-teal); color: var(--detta-teal); }
+      .calc-add { background: none; border: 1px dashed var(--detta-teal-mid); color: var(--detta-teal); border-radius: 12px; padding: 10px 14px; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer; width: 100%; margin: 2px 0 18px; }
+      .calc-add:hover { background: var(--detta-teal-light); }
+      .calc-total { border-top: 1px solid var(--detta-muted); padding-top: 16px; }
+      .calc-total small { color: var(--detta-ink-light); font-size: 12px; }
+      .calc-results { display: flex; flex-direction: column; gap: 14px; }
+      .calc-msg { color: var(--detta-ink-mid); font-size: 15px; }
+      .calc-plan { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .calc-plan-card { border: 1px solid var(--detta-muted); border-radius: 12px; padding: 16px; }
+      .calc-plan-card.best { border-color: var(--detta-teal); background: var(--detta-teal-light); }
+      .calc-plan-card h3 { font-size: 13px; font-weight: 600; color: var(--detta-ink-mid); margin: 0 0 8px; display: flex; align-items: center; gap: 6px; }
+      .calc-badge { background: var(--detta-teal); color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 999px; letter-spacing: 0.02em; }
+      .calc-big { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--detta-teal); line-height: 1.1; }
+      .calc-sub { font-size: 13px; color: var(--detta-ink-mid); margin-top: 4px; }
+      .calc-takeaway { background: var(--detta-teal); color: #fff; border-radius: 12px; padding: 14px 16px; font-size: 15px; line-height: 1.5; }
+      .calc-takeaway strong { color: #fff; }
+      .calc-baseline { font-size: 13px; color: var(--detta-ink-light); }
+      .calc-disclaimer { max-width: 760px; margin: 24px auto 0; text-align: center; font-size: 12px; color: var(--detta-ink-light); line-height: 1.6; }
+      .calc-cta { text-align: center; margin-top: 20px; }
+      .calc-cta-btn { display: inline-block; background: var(--detta-teal); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px; padding: 14px 28px; border-radius: 12px; }
+      .calc-cta-btn:hover { background: var(--detta-teal-mid); }
+      @media (forced-colors: active) { .calc-cta-btn, .calc-plan-card.best { border: 1px solid; } }
+    </style>
+
+    <div class="calc-inner">
+      <div class="calc-head">
+        <h2 id="calc-heading">See how fast you could be debt-free</h2>
+        <p>Add your credit cards and what you can pay each month. We'll show your payoff plan two proven ways, side by side. <strong>Your numbers never leave your browser.</strong></p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-input-card">
+          <div id="calcCards"></div>
+          <button type="button" class="calc-add" id="calcAddBtn">+ Add another card</button>
+          <label class="calc-field calc-total">
+            <span>Total you can put toward these cards each month</span>
+            <div class="calc-money"><span>$</span><input type="text" inputmode="decimal" class="calc-input" id="calcMonthly" aria-describedby="calcMinNote" /></div>
+            <small id="calcMinNote"></small>
+          </label>
+        </div>
+
+        <div class="calc-results" id="calcResults" aria-live="polite"></div>
+      </div>
+
+      <p class="calc-disclaimer">Estimates for education only, based on the numbers you enter and assuming fixed rates and no new charges. Detta is self-help software, not financial or legal advice, and results vary. Settling a debt for less than you owe can hurt your credit and may have tax consequences.</p>
+      <div class="calc-cta">
+        <a href="#waitlist" class="calc-cta-btn">Get your full plan and early access</a>
+      </div>
+    </div>
+
+    <script>
+    (function () {
+      'use strict';
+      var MAX_MONTHS = 600;
+      var cardsEl = document.getElementById('calcCards');
+      var monthlyEl = document.getElementById('calcMonthly');
+      var minNoteEl = document.getElementById('calcMinNote');
+      var resultsEl = document.getElementById('calcResults');
+      var addBtn = document.getElementById('calcAddBtn');
+      var rowId = 0;
+
+      function num(v, max) {
+        var n = parseFloat(String(v).replace(/[^0-9.]/g, ''));
+        if (!isFinite(n) || n < 0) return 0;
+        return Math.min(n, max);
+      }
+      function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+      function dur(m) {
+        if (!isFinite(m)) return 'Never (at this amount)';
+        var y = Math.floor(m / 12), mo = m % 12, p = [];
+        if (y) p.push(y + (y === 1 ? ' yr' : ' yrs'));
+        if (mo) p.push(mo + ' mo');
+        return p.join(' ') || '0 mo';
+      }
+
+      function readCards() {
+        var out = [];
+        var rows = cardsEl.querySelectorAll('.calc-card-row');
+        for (var i = 0; i < rows.length; i++) {
+          var r = rows[i];
+          var bal = num(r.querySelector('[data-f=bal]').value, 10000000);
+          var apr = num(r.querySelector('[data-f=apr]').value, 100);
+          var min = num(r.querySelector('[data-f=min]').value, 10000000);
+          if (bal > 0) out.push({ bal: bal, apr: apr, min: min });
+        }
+        return out;
+      }
+
+      // Estimate a minimum if the user leaves it blank (1% of balance + monthly interest, floor $25)
+      function estMin(bal, apr) {
+        return Math.max(bal * 0.01 + bal * (apr / 100) / 12, 25);
+      }
+
+      // Simulate payoff. strategy: 'snowball' | 'avalanche' | 'min'. Returns {months, interest}.
+      function simulate(cards, strategy, totalBudget) {
+        var d = cards.map(function (c) {
+          return { bal: c.bal, apr: c.apr, min: c.min > 0 ? c.min : estMin(c.bal, c.apr) };
+        });
+        if (strategy === 'snowball') d.sort(function (a, b) { return a.bal - b.bal; });
+        else if (strategy === 'avalanche') d.sort(function (a, b) { return b.apr - a.apr; });
+        var month = 0, totalInterest = 0;
+        while (month < MAX_MONTHS) {
+          var active = d.filter(function (x) { return x.bal > 0.01; });
+          if (!active.length) break;
+          month++;
+          var leftover = totalBudget;
+          for (var i = 0; i < active.length; i++) {
+            var x = active[i];
+            var interest = x.bal * (x.apr / 100) / 12;
+            x.bal += interest; totalInterest += interest;
+            var minPay = Math.min(x.min, x.bal);
+            x.bal -= minPay; leftover -= minPay;
+          }
+          if (strategy !== 'min' && leftover > 0.01) {
+            for (var j = 0; j < active.length && leftover > 0.01; j++) {
+              var pay = Math.min(leftover, active[j].bal);
+              active[j].bal -= pay; leftover -= pay;
+            }
+          }
+        }
+        if (month >= MAX_MONTHS) return { months: Infinity, interest: Infinity };
+        return { months: month, interest: totalInterest };
+      }
+
+      function sumMins(cards) {
+        return cards.reduce(function (s, c) { return s + (c.min > 0 ? c.min : estMin(c.bal, c.apr)); }, 0);
+      }
+
+      function el(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text != null) e.textContent = text;
+        return e;
+      }
+
+      function render() {
+        var cards = readCards();
+        resultsEl.textContent = '';
+        if (!cards.length) {
+          resultsEl.appendChild(el('p', 'calc-msg', 'Add a card balance to see your payoff plan.'));
+          minNoteEl.textContent = '';
+          return;
+        }
+        var minTotal = sumMins(cards);
+        minNoteEl.textContent = 'Your minimum payments add up to about ' + fmt(minTotal) + '/mo.';
+        var budget = num(monthlyEl.value, 10000000);
+        if (budget < minTotal - 0.5) {
+          resultsEl.appendChild(el('p', 'calc-msg', 'Enter at least ' + fmt(minTotal) + ' to cover your minimum payments, then we can show a plan.'));
+          return;
+        }
+
+        var snow = simulate(cards, 'snowball', budget);
+        var aval = simulate(cards, 'avalanche', budget);
+        var mins = simulate(cards, 'min', minTotal);
+
+        // Which to flag "best": fewer interest (avalanche), but note ties.
+        var avalBetter = aval.interest < snow.interest - 1;
+
+        var plan = el('div', 'calc-plan');
+        [['Avalanche', aval, 'Highest rate first', avalBetter],
+         ['Snowball', snow, 'Smallest balance first', !avalBetter]].forEach(function (p) {
+          var card = el('div', 'calc-plan-card' + (p[3] ? ' best' : ''));
+          var h = el('h3', null, p[0]);
+          if (p[3]) { var b = el('span', 'calc-badge', 'Saves more'); h.appendChild(b); }
+          card.appendChild(h);
+          card.appendChild(el('div', 'calc-big', dur(p[1].months)));
+          card.appendChild(el('div', 'calc-sub', isFinite(p[1].interest) ? fmt(p[1].interest) + ' total interest' : 'Payment too low'));
+          var note = el('div', 'calc-sub'); note.style.color = 'var(--detta-ink-light)'; note.textContent = p[2];
+          card.appendChild(note);
+          plan.appendChild(card);
+        });
+        resultsEl.appendChild(plan);
+
+        // Takeaway vs minimums-only
+        if (isFinite(mins.interest) && isFinite(aval.interest)) {
+          var saved = mins.interest - aval.interest;
+          var faster = mins.months - aval.months;
+          if (saved > 1 && faster > 0) {
+            var t = el('div', 'calc-takeaway');
+            t.appendChild(document.createTextNode('Versus paying only the minimums, this plan gets you debt-free about '));
+            var s1 = el('strong', null, dur(faster).toLowerCase() + ' sooner'); t.appendChild(s1);
+            t.appendChild(document.createTextNode(' and saves roughly '));
+            var s2 = el('strong', null, fmt(saved)); t.appendChild(s2);
+            t.appendChild(document.createTextNode(' in interest.'));
+            resultsEl.appendChild(t);
+          }
+        }
+        var base = el('p', 'calc-baseline',
+          isFinite(mins.months)
+            ? 'Paying only minimums: about ' + dur(mins.months) + ' and ' + fmt(mins.interest) + ' in interest.'
+            : 'At only the minimums, these balances barely move.');
+        resultsEl.appendChild(base);
+      }
+
+      function addRow(bal, apr, min) {
+        rowId++;
+        var row = el('div', 'calc-card-row');
+        function field(label, f, val, suffix) {
+          var wrap = el('label', 'calc-field');
+          wrap.appendChild(el('span', null, label));
+          var money = el('div', 'calc-money');
+          if (!suffix) money.appendChild(el('span', null, '$'));
+          var inp = el('input', 'calc-input');
+          inp.type = 'text'; inp.inputMode = 'decimal'; inp.setAttribute('data-f', f);
+          inp.value = val == null ? '' : String(val);
+          inp.setAttribute('aria-label', label + ' for card ' + rowId);
+          money.appendChild(inp);
+          if (suffix) { var sfx = el('span', 'calc-suffix', suffix); money.appendChild(sfx); }
+          wrap.appendChild(money);
+          return wrap;
+        }
+        row.appendChild(field('Balance', 'bal', bal));
+        var aprWrap = el('label', 'calc-field');
+        aprWrap.appendChild(el('span', null, 'Rate (APR)'));
+        var aprMoney = el('div', 'calc-money');
+        var aprInp = el('input', 'calc-input'); aprInp.type = 'text'; aprInp.inputMode = 'decimal';
+        aprInp.setAttribute('data-f', 'apr'); aprInp.value = apr == null ? '' : String(apr);
+        aprInp.setAttribute('aria-label', 'Annual percentage rate for card ' + rowId);
+        aprMoney.appendChild(aprInp); aprMoney.appendChild(el('span', 'calc-suffix', '%'));
+        aprWrap.appendChild(aprMoney); row.appendChild(aprWrap);
+        row.appendChild(field('Min. payment', 'min', min));
+        var rm = el('button', 'calc-remove', '×');
+        rm.type = 'button'; rm.setAttribute('aria-label', 'Remove card ' + rowId);
+        rm.addEventListener('click', function () {
+          if (cardsEl.querySelectorAll('.calc-card-row').length > 1) { row.remove(); render(); }
+        });
+        row.appendChild(rm);
+        cardsEl.appendChild(row);
+        row.querySelectorAll('input').forEach(function (inp) { inp.addEventListener('input', render); });
+      }
+
+      addBtn.addEventListener('click', function () { addRow('', '', ''); });
+      monthlyEl.addEventListener('input', render);
+
+      // Prefill with two realistic example cards so the tool shows value immediately.
+      addRow(6000, 24.99, 150);
+      addRow(2500, 19.99, 70);
+      monthlyEl.value = '450';
+      render();
+    })();
+    </script>
+  </section>
+
   <section class="trust-section">
     <div class="trust-inner">
       <div class="trust-heading">
