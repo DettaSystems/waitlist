@@ -1,0 +1,13 @@
+{
+  "name": "Detta™",
+  "short_name": "Detta",
+  "description": "Self-help debt resolution. No escrow. No middlemen.",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "theme_color": "#0D4F4F",
+  "background_color": "#F2ECDF",
+  "display": "standalone",
+  "start_url": "/"
+}
