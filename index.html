@@ -154,8 +154,12 @@
       position: relative;
       overflow: hidden;
       background: var(--detta-white);
-      min-height: 100vh;
-      min-height: 100dvh;
+      /* No full-viewport stretch: the hero is exactly its content plus the
+         hero-inner padding, so the space above and below the content is the
+         same on every browser/font/screen (no centering pool to mis-distribute,
+         which was the cause of the top-heavy look). Floor is below content
+         height so it never adds empty space. */
+      min-height: 500px;
       display: flex;
       flex-direction: column;
       justify-content: center;
