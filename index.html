@@ -374,10 +374,8 @@
 
     /* Right column: Form card */
     .hero-right {
+      position: relative;
       animation: wlFadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) 0.3s both;
-    }
-    @media (min-width: 768px) {
-      .hero-right { margin-top: 16px; }
     }
 
     .form-card {
@@ -609,7 +607,10 @@
       margin-top: 20px;
     }
     @media (min-width: 768px) {
-      .hero-social-desktop { display: flex; }
+      /* Pinned below the card and OUT of the centering flow, so the form card
+         itself centers with equal space above and below (the card is what the
+         eye reads as the content). */
+      .hero-social-desktop { display: flex; position: absolute; top: 100%; left: 0; right: 0; margin-top: 16px; }
     }
 
     /* ══════════════════════════════════════════════════════
