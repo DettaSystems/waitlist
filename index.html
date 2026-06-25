@@ -154,8 +154,12 @@
       position: relative;
       overflow: hidden;
       background: var(--detta-white);
-      min-height: 100vh;
-      min-height: 100dvh;
+      /* Sized to its content (not the full viewport). The vertical padding on
+         .hero-inner is symmetric, so the space above and below the content is
+         identical on every browser - there is no empty "pool" for the browser
+         to distribute unevenly (which is what rendered top-heavy before).
+         The floor is below the content height, so it never adds empty space. */
+      min-height: 500px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -229,14 +233,14 @@
     .hero-inner {
       position: relative;
       z-index: 10;
-      padding: 56px 20px 56px;
+      padding: 64px 20px 64px;
       max-width: 1120px;
       margin: 0 auto;
       width: 100%;
     }
-    @media (min-width: 640px) { .hero-inner { padding: 56px 32px 56px; } }
-    @media (min-width: 768px) { .hero-inner { padding: 80px 40px 80px; } }
-    @media (min-width: 1024px) { .hero-inner { padding: 80px 48px 80px; } }
+    @media (min-width: 640px) { .hero-inner { padding: 80px 32px 80px; } }
+    @media (min-width: 768px) { .hero-inner { padding: 112px 40px 112px; } }
+    @media (min-width: 1024px) { .hero-inner { padding: 112px 48px 112px; } }
 
     .hero-grid {
       display: grid;
