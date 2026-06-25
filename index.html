@@ -1646,6 +1646,129 @@
        TRUST SECTION
        ═══════════════════════════════════════════════════════════ -->
   <!-- ═══════════════════════════════════════════════════════════
+       SETTLEMENT & NEGOTIATION PLANNER (self-help tool; in-browser)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="set-section" id="settlement" aria-labelledby="set-heading">
+    <style>
+      .set-section { background: var(--detta-white); padding: 72px 24px; }
+      .set-section .calc-head { max-width: 880px; }
+      .set-section .calc-head h2 { font-size: clamp(25px, 3.1vw, 32px); }
+      .set-select { border: 1px solid var(--detta-muted); border-radius: 12px; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--detta-ink); width: 100%; background: #fff; }
+      .set-select:focus { outline: 2px solid var(--detta-teal); outline-offset: 1px; }
+      .set-caveats { list-style: none; margin: 0; padding: 0; }
+      .set-caveats li { font-size: 12.5px; line-height: 1.55; color: var(--detta-ink-mid); padding-left: 18px; position: relative; margin: 6px 0; }
+      .set-caveats li::before { content: "!"; position: absolute; left: 0; top: 0; color: var(--detta-amber); font-weight: 700; }
+    </style>
+
+    <div class="calc-inner">
+      <div class="calc-head">
+        <div class="path-accent" aria-hidden="true"><svg width="176" height="14" viewBox="0 0 176 14" fill="none"><circle cx="5" cy="4" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="15" cy="10" r="1.5" fill="currentColor" opacity="0.52"/><circle cx="27" cy="3" r="1.5" fill="currentColor" opacity="0.64"/><circle cx="39" cy="9" r="1.6" fill="currentColor" opacity="0.8"/><path d="M50 7 H148" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="160" cy="7" r="3.4" fill="currentColor"/><circle cx="160" cy="7" r="6.2" stroke="currentColor" stroke-width="1.1" opacity="0.34" fill="none"/></svg></div>
+        <h2 id="set-heading">What could you settle for, and what to say</h2>
+        <p>Enter a balance and who holds the debt now. We'll estimate a realistic offer range and draft your call script. <strong>Your numbers never leave your browser.</strong></p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-input-card">
+          <label class="calc-field" style="margin-bottom:14px;">
+            <span>Balance on this account</span>
+            <div class="calc-money"><span>$</span><input type="text" inputmode="decimal" class="calc-input" id="setBalance" /></div>
+          </label>
+          <label class="calc-field" style="margin-bottom:14px;">
+            <span>Who holds this debt now?</span>
+            <select class="set-select" id="setHolder">
+              <option value="original">The original creditor (your bank or card company)</option>
+              <option value="collector" selected>A collection agency</option>
+              <option value="buyer">A debt buyer (the account was sold)</option>
+              <option value="medical">A medical collection</option>
+            </select>
+          </label>
+          <label class="calc-field calc-total">
+            <span>What could you offer as a one-time lump sum? (optional)</span>
+            <div class="calc-money"><span>$</span><input type="text" inputmode="decimal" class="calc-input" id="setLump" /></div>
+            <small style="color:var(--detta-ink-light);font-size:12px;">A lump sum usually settles for less than a payment plan.</small>
+          </label>
+        </div>
+
+        <div class="calc-results" id="setResults" aria-live="polite"></div>
+      </div>
+
+      <p class="calc-disclaimer">Estimates only, based on commonly reported industry ranges (creditors vary and may decline). Detta™ is self-help software, not financial, tax, or legal advice. You contact the creditor yourself; Detta never negotiates for you or holds your money.</p>
+      <p class="calc-reviewed">Reviewed by a consumer-protection attorney.</p>
+      <div class="calc-cta">
+        <a href="#waitlist" class="calc-cta-btn">Get the full script and settlement letter</a>
+      </div>
+    </div>
+
+    <script>
+    (function () {
+      'use strict';
+      var RANGES = {
+        original: { low: 40, mid: 55, high: 65, note: "The original creditor still holds this debt, so they're the least flexible. Below about 50% is unlikely unless the account ages further." },
+        collector: { low: 25, mid: 40, high: 50, note: "Collection agencies are paid only when they collect, so they're motivated. Starting near 25% leaves room to land around 40%." },
+        buyer: { low: 20, mid: 30, high: 40, note: "Debt buyers often purchase accounts for pennies on the dollar, so they have real room to negotiate. Your leverage is genuine." },
+        medical: { low: 15, mid: 25, high: 40, note: "Medical debts are often the most flexible and may settle for roughly 15-40% of the original amount." }
+      };
+      var balanceEl = document.getElementById('setBalance');
+      var holderEl = document.getElementById('setHolder');
+      var lumpEl = document.getElementById('setLump');
+      var resultsEl = document.getElementById('setResults');
+
+      function num(v, max) {
+        var n = parseFloat(String(v).replace(/[^0-9.]/g, ''));
+        if (!isFinite(n) || n < 0) return 0;
+        return Math.min(n, max);
+      }
+      function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+      function render() {
+        var bal = num(balanceEl.value, 10000000);
+        var r = RANGES[holderEl.value] || RANGES.collector;
+        var lump = num(lumpEl.value, 10000000);
+        resultsEl.textContent = '';
+        if (bal <= 0) { resultsEl.appendChild(el('p', 'calc-msg', 'Enter a balance to see a realistic offer range and your script.')); return; }
+
+        var lowAmt = bal * r.low / 100, midAmt = bal * r.mid / 100, highAmt = bal * r.high / 100;
+
+        // Range card
+        var card = el('div', 'calc-plan-card best');
+        card.appendChild(el('h3', null, 'Realistic settlement range'));
+        card.appendChild(el('div', 'calc-big', fmt(lowAmt) + ' - ' + fmt(highAmt)));
+        card.appendChild(el('div', 'calc-sub', 'About ' + r.low + '-' + r.high + '% of the balance. Many land near ' + fmt(midAmt) + ' (' + r.mid + '%).'));
+        var sn = el('div', 'calc-sub'); sn.style.color = 'var(--detta-ink-light)'; sn.style.marginTop = '8px'; sn.textContent = r.note;
+        card.appendChild(sn);
+        resultsEl.appendChild(card);
+
+        // Lump-sum feedback
+        if (lump > 0) {
+          var pct = Math.round(lump / bal * 100);
+          var msg;
+          if (pct < r.low) msg = 'Your ' + fmt(lump) + ' is about ' + pct + '% of the balance, below a typical opening offer here, so it is a strong place to start (expect a counter).';
+          else if (pct <= r.high) msg = 'Your ' + fmt(lump) + ' is about ' + pct + '%, right inside the realistic range. A solid offer.';
+          else msg = 'Your ' + fmt(lump) + ' is about ' + pct + '%, more than you may need to offer. Consider opening lower, around ' + fmt(lowAmt) + '.';
+          resultsEl.appendChild(el('div', 'calc-takeaway', msg));
+        }
+
+        // Caveats
+        var ul = el('ul', 'set-caveats');
+        [
+          'A settlement is usually reported as "settled," not "paid in full," which can lower your credit score, often by 100+ points if you stop paying while negotiating.',
+          'If a creditor forgives $600 or more, you may receive a 1099-C and owe tax on the forgiven amount. Consult a tax professional.',
+          'No outcome is guaranteed. Creditors can decline, and these figures are estimates, not a promise.'
+        ].forEach(function (t) { ul.appendChild(el('li', null, t)); });
+        resultsEl.appendChild(ul);
+      }
+
+      balanceEl.addEventListener('input', render);
+      holderEl.addEventListener('change', render);
+      lumpEl.addEventListener('input', render);
+      balanceEl.value = '5000';
+      render();
+    })();
+    </script>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
        PAYOFF CALCULATOR (self-help tool; all math runs in-browser)
        ═══════════════════════════════════════════════════════════ -->
   <section class="calc-section" id="calculator" aria-labelledby="calc-heading">
@@ -1927,129 +2050,6 @@
       addRow(6000, 24.99, 150);
       addRow(2500, 19.99, 70);
       monthlyEl.value = '450';
-      render();
-    })();
-    </script>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       SETTLEMENT & NEGOTIATION PLANNER (self-help tool; in-browser)
-       ═══════════════════════════════════════════════════════════ -->
-  <section class="set-section" id="settlement" aria-labelledby="set-heading">
-    <style>
-      .set-section { background: var(--detta-white); padding: 72px 24px; }
-      .set-section .calc-head { max-width: 880px; }
-      .set-section .calc-head h2 { font-size: clamp(25px, 3.1vw, 32px); }
-      .set-select { border: 1px solid var(--detta-muted); border-radius: 12px; padding: 11px 12px; font: inherit; font-size: 15px; color: var(--detta-ink); width: 100%; background: #fff; }
-      .set-select:focus { outline: 2px solid var(--detta-teal); outline-offset: 1px; }
-      .set-caveats { list-style: none; margin: 0; padding: 0; }
-      .set-caveats li { font-size: 12.5px; line-height: 1.55; color: var(--detta-ink-mid); padding-left: 18px; position: relative; margin: 6px 0; }
-      .set-caveats li::before { content: "!"; position: absolute; left: 0; top: 0; color: var(--detta-amber); font-weight: 700; }
-    </style>
-
-    <div class="calc-inner">
-      <div class="calc-head">
-        <div class="path-accent" aria-hidden="true"><svg width="176" height="14" viewBox="0 0 176 14" fill="none"><circle cx="5" cy="4" r="1.5" fill="currentColor" opacity="0.4"/><circle cx="15" cy="10" r="1.5" fill="currentColor" opacity="0.52"/><circle cx="27" cy="3" r="1.5" fill="currentColor" opacity="0.64"/><circle cx="39" cy="9" r="1.6" fill="currentColor" opacity="0.8"/><path d="M50 7 H148" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="160" cy="7" r="3.4" fill="currentColor"/><circle cx="160" cy="7" r="6.2" stroke="currentColor" stroke-width="1.1" opacity="0.34" fill="none"/></svg></div>
-        <h2 id="set-heading">What could you settle for, and what to say</h2>
-        <p>Enter a balance and who holds the debt now. We'll estimate a realistic offer range and draft your call script. <strong>Your numbers never leave your browser.</strong></p>
-      </div>
-
-      <div class="calc-grid">
-        <div class="calc-input-card">
-          <label class="calc-field" style="margin-bottom:14px;">
-            <span>Balance on this account</span>
-            <div class="calc-money"><span>$</span><input type="text" inputmode="decimal" class="calc-input" id="setBalance" /></div>
-          </label>
-          <label class="calc-field" style="margin-bottom:14px;">
-            <span>Who holds this debt now?</span>
-            <select class="set-select" id="setHolder">
-              <option value="original">The original creditor (your bank or card company)</option>
-              <option value="collector" selected>A collection agency</option>
-              <option value="buyer">A debt buyer (the account was sold)</option>
-              <option value="medical">A medical collection</option>
-            </select>
-          </label>
-          <label class="calc-field calc-total">
-            <span>What could you offer as a one-time lump sum? (optional)</span>
-            <div class="calc-money"><span>$</span><input type="text" inputmode="decimal" class="calc-input" id="setLump" /></div>
-            <small style="color:var(--detta-ink-light);font-size:12px;">A lump sum usually settles for less than a payment plan.</small>
-          </label>
-        </div>
-
-        <div class="calc-results" id="setResults" aria-live="polite"></div>
-      </div>
-
-      <p class="calc-disclaimer">Estimates only, based on commonly reported industry ranges (creditors vary and may decline). Detta™ is self-help software, not financial, tax, or legal advice. You contact the creditor yourself; Detta never negotiates for you or holds your money.</p>
-      <p class="calc-reviewed">Reviewed by a consumer-protection attorney.</p>
-      <div class="calc-cta">
-        <a href="#waitlist" class="calc-cta-btn">Get the full script and settlement letter</a>
-      </div>
-    </div>
-
-    <script>
-    (function () {
-      'use strict';
-      var RANGES = {
-        original: { low: 40, mid: 55, high: 65, note: "The original creditor still holds this debt, so they're the least flexible. Below about 50% is unlikely unless the account ages further." },
-        collector: { low: 25, mid: 40, high: 50, note: "Collection agencies are paid only when they collect, so they're motivated. Starting near 25% leaves room to land around 40%." },
-        buyer: { low: 20, mid: 30, high: 40, note: "Debt buyers often purchase accounts for pennies on the dollar, so they have real room to negotiate. Your leverage is genuine." },
-        medical: { low: 15, mid: 25, high: 40, note: "Medical debts are often the most flexible and may settle for roughly 15-40% of the original amount." }
-      };
-      var balanceEl = document.getElementById('setBalance');
-      var holderEl = document.getElementById('setHolder');
-      var lumpEl = document.getElementById('setLump');
-      var resultsEl = document.getElementById('setResults');
-
-      function num(v, max) {
-        var n = parseFloat(String(v).replace(/[^0-9.]/g, ''));
-        if (!isFinite(n) || n < 0) return 0;
-        return Math.min(n, max);
-      }
-      function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
-      function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-
-      function render() {
-        var bal = num(balanceEl.value, 10000000);
-        var r = RANGES[holderEl.value] || RANGES.collector;
-        var lump = num(lumpEl.value, 10000000);
-        resultsEl.textContent = '';
-        if (bal <= 0) { resultsEl.appendChild(el('p', 'calc-msg', 'Enter a balance to see a realistic offer range and your script.')); return; }
-
-        var lowAmt = bal * r.low / 100, midAmt = bal * r.mid / 100, highAmt = bal * r.high / 100;
-
-        // Range card
-        var card = el('div', 'calc-plan-card best');
-        card.appendChild(el('h3', null, 'Realistic settlement range'));
-        card.appendChild(el('div', 'calc-big', fmt(lowAmt) + ' - ' + fmt(highAmt)));
-        card.appendChild(el('div', 'calc-sub', 'About ' + r.low + '-' + r.high + '% of the balance. Many land near ' + fmt(midAmt) + ' (' + r.mid + '%).'));
-        var sn = el('div', 'calc-sub'); sn.style.color = 'var(--detta-ink-light)'; sn.style.marginTop = '8px'; sn.textContent = r.note;
-        card.appendChild(sn);
-        resultsEl.appendChild(card);
-
-        // Lump-sum feedback
-        if (lump > 0) {
-          var pct = Math.round(lump / bal * 100);
-          var msg;
-          if (pct < r.low) msg = 'Your ' + fmt(lump) + ' is about ' + pct + '% of the balance, below a typical opening offer here, so it is a strong place to start (expect a counter).';
-          else if (pct <= r.high) msg = 'Your ' + fmt(lump) + ' is about ' + pct + '%, right inside the realistic range. A solid offer.';
-          else msg = 'Your ' + fmt(lump) + ' is about ' + pct + '%, more than you may need to offer. Consider opening lower, around ' + fmt(lowAmt) + '.';
-          resultsEl.appendChild(el('div', 'calc-takeaway', msg));
-        }
-
-        // Caveats
-        var ul = el('ul', 'set-caveats');
-        [
-          'A settlement is usually reported as "settled," not "paid in full," which can lower your credit score, often by 100+ points if you stop paying while negotiating.',
-          'If a creditor forgives $600 or more, you may receive a 1099-C and owe tax on the forgiven amount. Consult a tax professional.',
-          'No outcome is guaranteed. Creditors can decline, and these figures are estimates, not a promise.'
-        ].forEach(function (t) { ul.appendChild(el('li', null, t)); });
-        resultsEl.appendChild(ul);
-      }
-
-      balanceEl.addEventListener('input', render);
-      holderEl.addEventListener('change', render);
-      lumpEl.addEventListener('input', render);
-      balanceEl.value = '5000';
       render();
     })();
     </script>
