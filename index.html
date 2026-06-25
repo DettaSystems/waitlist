@@ -154,11 +154,8 @@
       position: relative;
       overflow: hidden;
       background: var(--detta-white);
-      /* Content-sized with equal padding (not full-viewport) so there is no
-         large empty void below the content. The hero-inner padding gives
-         balanced breathing room above and below; the next section fills the
-         rest of tall screens instead of an empty gap. */
-      min-height: 680px;
+      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
