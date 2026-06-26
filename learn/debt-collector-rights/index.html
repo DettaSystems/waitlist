@@ -66,8 +66,8 @@
     a { color:var(--teal-mid); }
     .topbar { border-bottom:1px solid var(--line); }
     .topbar-inner { max-width:760px; margin:0 auto; padding:20px 24px; display:flex; align-items:center; }
-    .brand { font-family:var(--font-display); font-weight:600; font-size:24px; color:var(--teal);
-      text-decoration:none; letter-spacing:-0.01em; }
+    .brand { display:inline-flex; align-items:center; text-decoration:none; }
+    .brand img { height:26px; width:auto; display:block; }
     main { max-width:760px; margin:0 auto; padding:40px 24px 32px; }
     .crumbs { font-size:14px; color:var(--ink-soft); margin:0 0 18px; }
     .crumbs a { color:var(--ink-soft); text-decoration:none; }
@@ -109,7 +109,7 @@
   </style>
 </head>
 <body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/">Detta</a></div></div>
+  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="78" height="26" /></a></div></div>
   <main>
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/learn/">Learn</a> &rsaquo; Debt collector rights</nav>
     <h1>Your rights when a debt collector calls</h1>
