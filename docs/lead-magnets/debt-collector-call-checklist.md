@@ -59,7 +59,7 @@ talk to a licensed attorney. **Detta is self-help software - not a law firm, and
 debt-settlement, debt-relief, or credit-counseling service.** We never contact your
 creditors and never hold your money._
 
-**Reviewed by [ATTORNEY NAME], [STATE] Bar.**
+**Reviewed by a consumer-protection attorney.**
 
 **Want the calm, step-by-step way to resolve debt yourself - and keep what you save?**
 Join the waitlist at **detta.us**.
