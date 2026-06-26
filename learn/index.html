@@ -36,8 +36,8 @@
     a { color:var(--teal-mid); }
     .topbar { border-bottom:1px solid var(--line); }
     .topbar-inner { max-width:820px; margin:0 auto; padding:20px 24px; display:flex; align-items:center; }
-    .brand { font-family:var(--font-display); font-weight:600; font-size:24px; color:var(--teal);
-      text-decoration:none; letter-spacing:-0.01em; }
+    .brand { display:inline-flex; align-items:center; text-decoration:none; }
+    .brand img { height:26px; width:auto; display:block; }
     main { max-width:820px; margin:0 auto; padding:44px 24px 32px; }
     h1 { font-family:var(--font-display); font-weight:600; font-size:40px; line-height:1.12;
       color:var(--teal); letter-spacing:-0.02em; margin:0 0 10px; }
@@ -66,7 +66,7 @@
   </style>
 </head>
 <body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/">Detta</a></div></div>
+  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="78" height="26" /></a></div></div>
   <main>
     <h1>Learn</h1>
     <p class="lead">Plain-English guides and free tools to understand and resolve your own debt, the calm way. Reviewed by a consumer-protection attorney. No hype, and no promises about outcomes.</p>
@@ -78,6 +78,11 @@
         <span class="tag">Your rights</span>
         <h3>Your rights when a debt collector calls</h3>
         <p>What collectors can and cannot do under the FDCPA, what to do when they call, and how to spot a scam.</p>
+      </a>
+      <a class="card" href="/learn/do-i-need-a-debt-settlement-company/">
+        <span class="tag">Your options</span>
+        <h3>Do I need a debt settlement company?</h3>
+        <p>An honest comparison of your options for resolving debt, including doing it yourself for free.</p>
       </a>
       <a class="card" href="/resources/debt-collector-call-checklist.pdf" target="_blank" rel="noopener">
         <span class="tag">Free download</span>
