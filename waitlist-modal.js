@@ -21,6 +21,7 @@
   // ── Styles ──
   var css =
     ".dtw-overlay{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(13,43,43,.55);backdrop-filter:blur(3px);opacity:0;transition:opacity .18s ease}" +
+    ".dtw-overlay[hidden]{display:none}" +
     ".dtw-overlay.dtw-open{opacity:1}" +
     ".dtw-card{position:relative;width:100%;max-width:440px;background:#FBFDFD;border:1px solid #D9E5E5;border-radius:16px;box-shadow:0 24px 60px rgba(13,79,79,.28);padding:30px 28px 26px;transform:translateY(8px) scale(.98);transition:transform .18s ease;font-family:'DM Sans',system-ui,-apple-system,sans-serif;color:#1A2B2B;max-height:calc(100vh - 40px);overflow-y:auto}" +
     ".dtw-overlay.dtw-open .dtw-card{transform:none}" +
