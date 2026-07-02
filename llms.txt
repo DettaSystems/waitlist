@@ -1,0 +1,32 @@
+# Detta
+
+> Detta is self-help software (not a law firm, debt-settlement company, or credit-counseling agency) that helps U.S. consumers understand and resolve their own unsecured debt — without escrow and without handing over a percentage of what they owe. Detta provides plain-English guides, calculators, letter templates, and guided workflows so people can deal with creditors and collectors themselves. Not legal, financial, or tax advice. Results vary.
+
+## About
+
+- Detta helps you resolve debt yourself: understand your rights, calculate payoff, and generate the letters and plans to act — you pay creditors directly, Detta never holds your money.
+- Guides are written in plain English and reviewed by a consumer-protection attorney. Content is general education, not advice about your specific situation.
+
+## Learn (attorney-reviewed guides)
+
+- [Your rights when a debt collector calls](https://www.detta.us/learn/debt-collector-rights/): What collectors can and cannot do under the FDCPA, and how to spot a scam.
+- [How to write a debt validation letter](https://www.detta.us/learn/debt-validation-letter/): Make a collector prove a debt is yours before you pay — the 30-day window and what your letter must include.
+- [How to negotiate credit card debt settlement yourself](https://www.detta.us/learn/negotiate-credit-card-debt/): How much to offer, which department to call, and how to get the deal in writing — without a settlement company.
+- [Can a credit card company actually sue you?](https://www.detta.us/learn/can-a-credit-card-company-sue-you/): The real timeline from missed payment to lawsuit, garnishment, and the statute of limitations.
+- [Do I need a debt settlement company?](https://www.detta.us/learn/do-i-need-a-debt-settlement-company/): An honest comparison of your options, including doing it yourself for free.
+- [Debt snowball vs. avalanche](https://www.detta.us/learn/debt-snowball-vs-avalanche/): Which payoff method clears your cards faster, and how to choose.
+- [Drowning in credit card debt? Start here](https://www.detta.us/learn/drowning-in-credit-card-debt/): A calm, judgment-free first step when it all feels bottomless.
+- [Learn hub](https://www.detta.us/learn/): All guides and free tools.
+
+## Key pages
+
+- [Home](https://www.detta.us/): What Detta is and how to join the waitlist.
+- [Trust & Safety](https://www.detta.us/trust/): How Detta protects you and what it will never do (no escrow, no selling your data).
+- [Debt-collector call checklist (free PDF)](https://www.detta.us/resources/debt-collector-call-checklist.pdf): One-page checklist for what to say when a collector calls.
+
+## Compliance
+
+- Detta is self-help software, not a law firm, debt-settlement company, or credit-counseling agency.
+- Detta never holds consumer funds and never contacts creditors on a user's behalf.
+- Nothing on the site is legal, financial, or tax advice. Not an offer of securities. Results vary by individual circumstances.
+- Contact: support@detta.us
