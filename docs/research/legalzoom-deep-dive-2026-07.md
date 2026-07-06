@@ -133,3 +133,54 @@ _Sources: LegalZoom S-1 (SEC), FY2025 10-K and earnings release (investors.legal
 Georgetown Journal of Legal Ethics (Janson analysis), Arizona Supreme Court ABS approval
 release, lzlegalservices.com, Holland & Knight ABS guide (Dec 2025), FTC Debt Relief
 Services & TSR business guide, 16 CFR 310.2._
+
+---
+
+# Addendum: page-level funnel teardown (live capture, July 6, 2026)
+
+Captured with a real browser: legalzoom.com homepage + LLC overview/pricing funnel,
+compared against detta.us. Patterns observed directly, not from commentary.
+
+## What LegalZoom's pages actually do
+
+1. **Task-based entry, not feature-based.** Homepage hero offers six intent tiles
+   ("Start my business," "Create my will or trust," "Get attorney guidance"). Users
+   self-route by goal.
+2. **Confidence self-segmentation above pricing.** Two tabs: "I can do most of the
+   work myself" vs "I want peace of mind knowing attorney guidance is there if I need
+   it." The same products, framed by user confidence level. Their sharpest pattern.
+3. **$0 anchor tier + fee transparency.** Basic $0 "+ state filing fees", Pro $249,
+   Premium $299; each tier is "includes [previous], plus:"; identical CTA on all three
+   ("Form my LLC").
+4. **Trust stack adjacent to the hero:** Trustpilot stars + "Excellent" + a named
+   customer testimonial beside the headline; "trusted by millions" in the H1 itself.
+5. **Plain-language guarantee band:** "100% Accurate Filing Guarantee - if your filing
+   is rejected or incorrect due to our error, we'll correct it with the government
+   agency at no additional cost to you." A concrete promise, not puffery.
+6. **Human escalation everywhere:** "Talk to a specialist... in under two minutes" +
+   phone number in the global header and mid-page bands.
+7. **Education ON the funnel page:** "What is an LLC?" long-form content below the
+   pricing modules (SEO + objection handling on the same URL).
+8. **Product-in-the-marketing:** "How it works" shows a mock of the actual first
+   question ("What's your business name?" -> "Form my LLC"), reducing fear of the
+   unknown.
+
+## Detta waitlist page vs the patterns
+
+Already strong: hero form directly in the hero (LZ makes you click through); fee-first
+value framing ("Keep the savings"); "early adopters get access first" scarcity line;
+Janson/TSR-safe copy ("gives you the tools to do it yourself").
+
+Recommended adaptations (owner approval before any go live):
+- **A. Situation chips on the hero form** (adapts pattern 2): tappable chips above the
+  email field ("Collectors are calling" / "Behind on credit cards" / "Planning ahead")
+  that prefill the existing debtSituation field. Micro-commitment + segmentation data.
+- **B. A promises band** (adapts pattern 5): concrete-guarantee styling for what Detta
+  already promises in prose: we never hold your money, never contact your creditors,
+  no spam, unsubscribe anytime, guidance reviewed by consumer-protection attorneys.
+- **C. Elevate the attorney-reviewed trust marker** near the form CTA (adapts pattern
+  4; pre-launch substitute for reviews, and it is the moat LegalZoom had to buy).
+- **D. Surface 2-3 /learn/ guides just under the hero** (adapts patterns 1+7): intent
+  tiles double as education-first acquisition.
+- **E. For the app's /pricing later:** $0 anchor + "includes previous, plus" laddering +
+  identical per-tier CTA + confidence segmentation tabs.
