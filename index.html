@@ -1483,6 +1483,11 @@
               <form class="wl-form" id="waitlistForm">
                 <!-- Honeypot: bots fill this; humans never see it. Formspree discards on _gotcha. -->
                 <input type="text" name="_gotcha" id="gotchaField" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none" />
+                <div class="sit-chips" id="sitChips" role="group" aria-label="What is your situation?">
+                  <button type="button" class="sit-chip" data-sit="collections">Collectors are calling</button>
+                  <button type="button" class="sit-chip" data-sit="credit_card">Behind on credit cards</button>
+                  <button type="button" class="sit-chip" data-sit="multiple">Multiple debts</button>
+                </div>
                 <div class="form-field form-field-1">
                   <input type="email" name="email" class="wl-input" placeholder="Your email address" required id="emailInput" autocomplete="email" />
                 </div>
@@ -1506,6 +1511,7 @@
                     <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </button>
                 </div>
+                <p class="form-trust"><span class="ft-check">&#10003;</span> Guidance reviewed by a consumer-protection attorney</p>
                 <p class="form-error-msg" id="formError"></p>
                 <div id="formStatus" aria-live="polite" class="sr-only"></div>
               </form>
@@ -1557,6 +1563,52 @@
   <!-- ═══════════════════════════════════════════════════════════
        HOW IT WORKS
        ═══════════════════════════════════════════════════════════ -->
+  <style>
+    .sit-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+    .sit-chip{font:inherit;font-size:13.5px;font-weight:600;color:#0D4F4F;background:#E8F4F4;border:1px solid #D9E5E5;border-radius:999px;padding:7px 13px;cursor:pointer;transition:background .12s ease,color .12s ease,transform .12s ease}
+    .sit-chip:hover{transform:translateY(-1px)}
+    .sit-chip.active{background:#0D4F4F;color:#fff;border-color:#0D4F4F}
+    .form-trust{font-size:12.5px;color:#4A5C5C;margin:10px 0 0;text-align:center}
+    .ft-check{color:#C8922A;font-weight:700}
+    .promises{background:#fff;border-top:1px solid #E5DED2;border-bottom:1px solid #E5DED2}
+    .promises-inner{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center}
+    .promise{font-size:14px;font-weight:600;color:#0D4F4F;display:inline-flex;align-items:center;gap:7px}
+    .promise .p-check{width:19px;height:19px;border-radius:50%;background:#E8F4F4;color:#0D4F4F;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  </style>
+  <section class="promises" aria-label="Our promises">
+    <div class="promises-inner">
+      <span class="promise"><span class="p-check">&#10003;</span> We never hold your money</span>
+      <span class="promise"><span class="p-check">&#10003;</span> We never contact your creditors</span>
+      <span class="promise"><span class="p-check">&#10003;</span> Attorney-reviewed guidance</span>
+      <span class="promise"><span class="p-check">&#10003;</span> No spam, unsubscribe anytime</span>
+    </div>
+  </section>
+  <script>
+  (function () {
+    var chips = document.querySelectorAll(".sit-chip");
+    var sel = document.getElementById("situationSelect");
+    var email = document.getElementById("emailInput");
+    if (!chips.length || !sel) return;
+    chips.forEach(function (c) {
+      c.addEventListener("click", function () {
+        var active = c.classList.contains("active");
+        chips.forEach(function (x) { x.classList.remove("active"); });
+        if (active) { sel.value = ""; sel.selectedIndex = 0; }
+        else {
+          c.classList.add("active");
+          sel.value = c.getAttribute("data-sit");
+          if (email) email.focus();
+        }
+        sel.dispatchEvent(new Event("change", { bubbles: true }));
+        try { if (window.plausible) window.plausible("Situation Chip"); } catch (_) {}
+      });
+    });
+    sel.addEventListener("change", function () {
+      chips.forEach(function (x) { x.classList.toggle("active", x.getAttribute("data-sit") === sel.value); });
+    });
+  })();
+  </script>
+
   <section class="how-section">
     <div class="how-inner">
       <div class="how-heading">
