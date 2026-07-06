@@ -1,4 +1,4 @@
-/* Detta waitlist modal — opens the "Reserve your spot" signup card as a popup
+/* Detta waitlist modal - opens the "Reserve your spot" signup card as a popup
  * from any "Join the waitlist" CTA that is NOT inside the site header.
  * Self-contained, no dependencies. Namespaced `dtw-` to avoid clashing with
  * the homepage's inline form JS. Submits to the same Formspree endpoint. */
@@ -188,7 +188,7 @@
   function bind() {
     var links = document.querySelectorAll('a[href="/#waitlist"], a[href="#waitlist"]');
     Array.prototype.forEach.call(links, function (a) {
-      // Skip any CTA inside a site header / nav — those keep their behavior.
+      // Skip any CTA inside a site header / nav - those keep their behavior.
       if (a.closest("header, nav, .topbar, [role=banner]")) return;
       a.addEventListener("click", open);
     });

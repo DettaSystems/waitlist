@@ -1,27 +1,27 @@
 # Detta
 
-> Detta is self-help software (not a law firm, debt-settlement company, or credit-counseling agency) that helps U.S. consumers understand and resolve their own unsecured debt — without escrow and without handing over a percentage of what they owe. Detta provides plain-English guides, calculators, letter templates, and guided workflows so people can deal with creditors and collectors themselves. Not legal, financial, or tax advice. Results vary.
+> Detta is self-help software (not a law firm, debt-settlement company, or credit-counseling agency) that helps U.S. consumers understand and resolve their own unsecured debt - without escrow and without handing over a percentage of what they owe. Detta provides plain-English guides, calculators, letter templates, and guided workflows so people can deal with creditors and collectors themselves. Not legal, financial, or tax advice. Results vary.
 
 ## About
 
-- Detta helps you resolve debt yourself: understand your rights, calculate payoff, and generate the letters and plans to act — you pay creditors directly, Detta never holds your money.
+- Detta helps you resolve debt yourself: understand your rights, calculate payoff, and generate the letters and plans to act - you pay creditors directly, Detta never holds your money.
 - Guides are written in plain English and reviewed by a consumer-protection attorney. Content is general education, not advice about your specific situation.
 
 ## Learn (attorney-reviewed guides)
 
 - [Your rights when a debt collector calls](https://www.detta.us/learn/debt-collector-rights/): What collectors can and cannot do under the FDCPA, and how to spot a scam.
-- [How to write a debt validation letter](https://www.detta.us/learn/debt-validation-letter/): Make a collector prove a debt is yours before you pay — the 30-day window and what your letter must include.
-- [How to negotiate credit card debt settlement yourself](https://www.detta.us/learn/negotiate-credit-card-debt/): How much to offer, which department to call, and how to get the deal in writing — without a settlement company.
+- [How to write a debt validation letter](https://www.detta.us/learn/debt-validation-letter/): Make a collector prove a debt is yours before you pay - the 30-day window and what your letter must include.
+- [How to negotiate credit card debt settlement yourself](https://www.detta.us/learn/negotiate-credit-card-debt/): How much to offer, which department to call, and how to get the deal in writing - without a settlement company.
 - [Can a credit card company actually sue you?](https://www.detta.us/learn/can-a-credit-card-company-sue-you/): The real timeline from missed payment to lawsuit, garnishment, and the statute of limitations.
 - [Do I need a debt settlement company?](https://www.detta.us/learn/do-i-need-a-debt-settlement-company/): An honest comparison of your options, including doing it yourself for free.
 - [Debt snowball vs. avalanche](https://www.detta.us/learn/debt-snowball-vs-avalanche/): Which payoff method clears your cards faster, and how to choose.
 - [Drowning in credit card debt? Start here](https://www.detta.us/learn/drowning-in-credit-card-debt/): A calm, judgment-free first step when it all feels bottomless.
 - [Statute of limitations on debt](https://www.detta.us/learn/statute-of-limitations-on-debt/): How long you can be sued over a debt, when the clock starts, and what quietly restarts it.
 - [Can debt collectors garnish your wages?](https://www.detta.us/learn/can-debt-collectors-garnish-wages/): When garnishment can happen, the federal limits, and which income (Social Security, SSI, VA) is protected.
-- [What is a credit card charge-off?](https://www.detta.us/learn/credit-card-charge-off/): A charge-off means the creditor wrote your debt off as a loss — but you still owe it. What happens next, the 7-year rule, and your options.
-- [Debt collector scams: 8 red flags it's fake](https://www.detta.us/learn/debt-collector-scam-red-flags/): Threats of arrest, gift-card demands, refusing to identify themselves — how to spot a fake collector and verify a real one.
-- [Your debt-relief options, compared honestly](https://www.detta.us/learn/debt-relief-options-compared/): DIY, settlement companies, credit counseling, consolidation, bankruptcy — real costs, credit impact, risks, and who each fits.
-- [Debt glossary: 37 terms in plain English](https://www.detta.us/learn/debt-glossary/): Charge-off, time-barred, validation notice, default judgment — every confusing debt term, defined in plain English.
+- [What is a credit card charge-off?](https://www.detta.us/learn/credit-card-charge-off/): A charge-off means the creditor wrote your debt off as a loss - but you still owe it. What happens next, the 7-year rule, and your options.
+- [Debt collector scams: 8 red flags it's fake](https://www.detta.us/learn/debt-collector-scam-red-flags/): Threats of arrest, gift-card demands, refusing to identify themselves - how to spot a fake collector and verify a real one.
+- [Your debt-relief options, compared honestly](https://www.detta.us/learn/debt-relief-options-compared/): DIY, settlement companies, credit counseling, consolidation, bankruptcy - real costs, credit impact, risks, and who each fits.
+- [Debt glossary: 37 terms in plain English](https://www.detta.us/learn/debt-glossary/): Charge-off, time-barred, validation notice, default judgment - every confusing debt term, defined in plain English.
 - [Learn hub](https://www.detta.us/learn/): All guides and free tools.
 
 ## Key pages
