@@ -172,6 +172,83 @@
       </a>
     </div>
 
+    <style>
+      .nl-card{margin:40px 0 0;background:linear-gradient(135deg,#0D4F4F,#146060);border-radius:16px;padding:30px 28px;text-align:center;box-shadow:0 6px 24px rgba(13,79,79,.18)}
+      .nl-eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#E8B84B;margin:0 0 8px}
+      .nl-card h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:26px;color:#fff;margin:0 0 6px;letter-spacing:-.01em}
+      .nl-sub{font-size:15px;color:#C9E2E0;margin:0 auto 18px;max-width:480px}
+      .nl-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+      .nl-input{font:inherit;font-size:15px;padding:12px 14px;border:1px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.08);color:#fff;width:min(320px,100%)}
+      .nl-input::placeholder{color:#9FC6C4}
+      .nl-input:focus{outline:none;border-color:#E8B84B;box-shadow:0 0 0 3px rgba(232,184,75,.2)}
+      .nl-btn{font:inherit;font-weight:600;font-size:15px;color:#0D4F4F;background:#fff;border:0;border-radius:10px;padding:12px 22px;cursor:pointer}
+      .nl-btn:hover{filter:brightness(.95)}
+      .nl-btn:disabled{opacity:.7;cursor:default}
+      .nl-err{color:#F4B4A0;font-size:14px;margin:10px 0 0;min-height:0}
+      .nl-fine{font-size:12.5px;color:#9FC6C4;margin:14px 0 0}
+      .nl-fine a{color:#E8B84B}
+      .nl-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none}
+      .nl-success{color:#fff;font-size:16px;margin:6px 0}
+    </style>
+    <div class="nl-card" id="newsletter">
+      <p class="nl-eyebrow">Free newsletter</p>
+      <h2>New guides, straight to your inbox</h2>
+      <p class="nl-sub">An occasional email when we publish a new attorney-reviewed guide. No spam, and you can unsubscribe anytime.</p>
+      <form class="nl-form" id="nlForm" novalidate>
+        <input type="text" name="_gotcha" id="nlGotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="nl-hp" />
+        <input type="email" name="email" id="nlEmail" class="nl-input" placeholder="Your email address" required autocomplete="email" aria-label="Email address for the newsletter" />
+        <button type="submit" class="nl-btn" id="nlBtn">Subscribe</button>
+      </form>
+      <p class="nl-err" id="nlErr" role="alert"></p>
+      <div class="nl-success" id="nlSuccess" hidden>You're in. New guides will land in your inbox.</div>
+      <p class="nl-fine">Newsletter only: subscribing does not join you to the product waitlist. Want early access too? <a href="/#waitlist">Join the waitlist</a>.</p>
+    </div>
+    <script>
+    (function () {
+      var FORM_URL = "https://formspree.io/f/mojkywvp";
+      var form = document.getElementById("nlForm");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = document.getElementById("nlBtn");
+        var err = document.getElementById("nlErr");
+        var emailEl = document.getElementById("nlEmail");
+        var email = emailEl.value.trim();
+        err.textContent = "";
+        if (!email) { err.textContent = "Please enter your email address."; emailEl.focus(); return; }
+        btn.disabled = true; btn.textContent = "Subscribing…";
+        var body = { email: email, list: "newsletter", _subject: "New Detta newsletter signup" };
+        var gc = document.getElementById("nlGotcha");
+        body._gotcha = gc ? gc.value : "";
+        try {
+          var params = new URLSearchParams(window.location.search);
+          ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","ref"].forEach(function (k) {
+            var v = params.get(k); if (v) body[k === "ref" ? "source" : k] = v;
+          });
+          if (document.referrer) body.referrer = document.referrer;
+          body.signupSource = "learn-newsletter";
+        } catch (_) {}
+        fetch(FORM_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body)
+        }).then(function (res) {
+          if (res.ok) {
+            form.hidden = true;
+            document.getElementById("nlSuccess").hidden = false;
+            try { if (window.plausible) window.plausible("Newsletter Signup"); } catch (_) {}
+          } else {
+            err.textContent = "Something went wrong. Please try again.";
+            btn.disabled = false; btn.textContent = "Subscribe";
+          }
+        }).catch(function () {
+          err.textContent = "Something went wrong. Please try again.";
+          btn.disabled = false; btn.textContent = "Subscribe";
+        });
+      });
+    })();
+    </script>
+
     <div class="callout"><strong>General education, not advice.</strong> Detta&trade; is self-help software, not a law firm, debt-settlement company, or credit-counseling agency. Nothing here is legal, financial, or tax advice, and we never hold your money or contact your creditors. Results vary depending on individual circumstances.</div>
   </main>
   <footer><div class="footer-inner">
