@@ -1483,6 +1483,7 @@
               <form class="wl-form" id="waitlistForm">
                 <!-- Honeypot: bots fill this; humans never see it. Formspree discards on _gotcha. -->
                 <input type="text" name="_gotcha" id="gotchaField" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none" />
+                <p class="sit-label">Tap what fits</p>
                 <div class="sit-chips" id="sitChips" role="group" aria-label="What is your situation?">
                   <button type="button" class="sit-chip" data-sit="collections">Collectors are calling</button>
                   <button type="button" class="sit-chip" data-sit="credit_card">Behind on credit cards</button>
@@ -1564,10 +1565,16 @@
        HOW IT WORKS
        ═══════════════════════════════════════════════════════════ -->
   <style>
-    .sit-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
-    .sit-chip{font:inherit;font-size:13.5px;font-weight:600;color:#0D4F4F;background:#E8F4F4;border:1px solid #D9E5E5;border-radius:999px;padding:7px 13px;cursor:pointer;transition:background .12s ease,color .12s ease,transform .12s ease}
-    .sit-chip:hover{transform:translateY(-1px)}
-    .sit-chip.active{background:#0D4F4F;color:#fff;border-color:#0D4F4F}
+    .sit-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#C8922A;margin:0 0 7px}
+    .sit-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+    .sit-chip{position:relative;font:inherit;font-size:13.5px;font-weight:600;color:#0D4F4F;border:1px solid transparent;border-radius:999px;padding:8px 14px;cursor:pointer;background:linear-gradient(#FDFEFE,#F3FAFA) padding-box,linear-gradient(135deg,rgba(26,112,112,.55),rgba(200,146,42,.55)) border-box;box-shadow:0 1px 4px rgba(13,79,79,.08);transition:transform .15s ease,box-shadow .15s ease,background .18s ease,color .15s ease}
+    .sit-chip::before{content:"\2713";display:inline-block;font-weight:800;color:#E8B84B;max-width:0;opacity:0;transform:scale(.4);overflow:hidden;vertical-align:-1px;transition:max-width .18s ease,opacity .18s ease,transform .22s cubic-bezier(.34,1.56,.64,1),margin .18s ease}
+    .sit-chip:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,79,79,.16)}
+    .sit-chip:active{transform:scale(.95)}
+    .sit-chip:focus-visible{outline:2px solid #1A7070;outline-offset:2px}
+    .sit-chip.active{color:#fff;background:linear-gradient(135deg,#0D4F4F,#176962) padding-box,linear-gradient(135deg,#0D4F4F,#C8922A) border-box;box-shadow:0 5px 16px rgba(13,79,79,.30)}
+    .sit-chip.active::before{max-width:14px;opacity:1;transform:scale(1);margin-right:6px}
+    @media (prefers-reduced-motion: reduce){.sit-chip,.sit-chip::before{transition:none}}
     .form-trust{font-size:12.5px;color:#4A5C5C;margin:10px 0 0;text-align:center}
     .ft-check{color:#C8922A;font-weight:700}
     .promises{background:#fff;border-top:1px solid #E5DED2;border-bottom:1px solid #E5DED2}
