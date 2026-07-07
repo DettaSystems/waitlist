@@ -144,6 +144,19 @@
     .b2b-err { color:#B4341F; font-size:14px; margin:6px 0 0; }
     .b2b-success { font-size:16px; color:var(--teal); font-weight:600; margin:6px 0; }
     .hp { position:absolute!important; left:-9999px!important; width:1px; height:1px; opacity:0; pointer-events:none; }
+    .faq { margin:18px 0 0; }
+    .faq details { background:#fff; border:1px solid var(--line); border-radius:14px; margin:0 0 10px;
+      box-shadow:0 2px 12px rgba(13,79,79,0.05); overflow:hidden; }
+    .faq summary { list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:16px 20px; font-family:var(--font-display); font-weight:600; font-size:17px; color:var(--teal); }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; background:var(--teal-light); color:var(--teal);
+      font-family:var(--font-body); font-weight:700; font-size:16px; transition:transform .18s ease, background .18s ease, color .18s ease; }
+    .faq details[open] summary::after { content:"+"; transform:rotate(45deg); background:var(--teal); color:#fff; }
+    .faq details[open] summary { border-bottom:1px solid var(--line); }
+    .faq .faq-a { padding:14px 20px 16px; font-size:15.5px; color:var(--ink); margin:0; }
+    .faq summary:focus-visible { outline:2px solid var(--teal-mid); outline-offset:-2px; }
     footer { border-top:1px solid var(--line); margin-top:48px; }
     .footer-inner { max-width:820px; margin:0 auto; padding:28px 24px; color:var(--ink-soft); font-size:14px; }
     .footer-disclaimer { margin:0 0 12px; }
@@ -262,10 +275,24 @@
 
     <p class="sec-eyebrow">Questions</p>
     <h2>Common questions</h2>
-    <p><strong>Can we see employee activity or debts?</strong> No. Never. Employers get a benefit their people trust precisely because you can't look inside it.</p>
-    <p><strong>Is this debt settlement or credit counseling?</strong> Neither. Detta is self-help software: employees resolve debt themselves with attorney-reviewed tools. We never hold money or contact creditors.</p>
-    <p><strong>What does it cost?</strong> We're selecting launch partners now and shaping employer pricing with them. Start the conversation above.</p>
-    <p><strong>When can we roll it out?</strong> Detta is pre-launch with an active consumer waitlist. Launch partners get first access as we open up.</p>
+    <div class="faq">
+      <details open>
+        <summary>Can we see employee activity or debts?</summary>
+        <p class="faq-a">No. Never. Employers get a benefit their people trust precisely because you can't look inside it.</p>
+      </details>
+      <details>
+        <summary>Is this debt settlement or credit counseling?</summary>
+        <p class="faq-a">Neither. Detta is self-help software: employees resolve debt themselves with attorney-reviewed tools. We never hold money or contact creditors.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p class="faq-a">We're selecting launch partners now and shaping employer pricing with them. Start the conversation above.</p>
+      </details>
+      <details>
+        <summary>When can we roll it out?</summary>
+        <p class="faq-a">Detta is pre-launch with an active consumer waitlist. Launch partners get first access as we open up.</p>
+      </details>
+    </div>
 
     <div class="callout"><strong>The fine print, plainly:</strong> Detta&trade; is self-help software, not a law firm, debt-settlement company, or credit-counseling agency. The benefit gives employees tools and general education to resolve their own debt; it is not legal, financial, or tax advice, and no outcome is guaranteed. Employee use is private and voluntary.</div>
   </main>
