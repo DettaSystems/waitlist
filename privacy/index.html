@@ -57,7 +57,8 @@
     footer { border-top:1px solid var(--line); margin-top:48px; }
     .footer-inner { max-width:760px; margin:0 auto; padding:28px 24px; color:var(--ink-soft); font-size:14px; }
     .footer-disclaimer { margin:0 0 12px; }
-    .footer-links { display:flex; flex-wrap:wrap; gap:9px 26px; }
+    .footer-links { display:flex; flex-wrap:wrap; align-items:center; gap:9px 22px; }
+    .fsep { width:1px; height:13px; background:var(--line); }
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
@@ -166,8 +167,15 @@
   <footer><div class="footer-inner">
     <p class="footer-disclaimer">Detta™ is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
     <div class="footer-links">
+      <a href="/learn/">Learn</a>
+      <a href="/newsletter/">Newsletter</a>
       <a href="/employers/">For employers</a>
-      <a href="/learn/">Learn</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/trust/">Trust &amp; Safety</a><a href="mailto:support@detta.us">support@detta.us</a>
+      <span class="fsep"></span>
+      <a href="/trust/">Trust &amp; Safety</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <span class="fsep"></span>
+      <a href="mailto:support@detta.us">support@detta.us</a>
     </div>
   </div></footer>
   <script src="/waitlist-modal.js" defer></script>
