@@ -32,6 +32,7 @@
 ## Key pages
 
 - [Home](https://www.detta.us/): What Detta is and how to join the waitlist.
+- [Detta for Employers](https://www.detta.us/employers/): Debt resolution as an employee benefit for HR teams, benefits platforms, PEOs, and brokers. Private by design; employers never see employee details.
 - [Trust & Safety](https://www.detta.us/trust/): How Detta protects you and what it will never do (no escrow, no selling your data).
 - [Debt-collector call checklist (free PDF)](https://www.detta.us/resources/debt-collector-call-checklist.pdf): One-page checklist for what to say when a collector calls.
 
