@@ -1,0 +1,15 @@
+{
+  "_readme": "Public partner settings. Generic wording only: never put a company name here before written consent. Named wording lives in .partners-private/<slug>.json (gitignored). Build: node scripts/partner-page.mjs <slug> [--named]",
+  "kj": {
+    "slug": "kj",
+    "signupSource": "partner-kj",
+    "forLine": "For professional drivers",
+    "headline": "Free for drivers.",
+    "who": "drivers",
+    "company": "your company",
+    "Company": "Your company",
+    "leaveLine": "even if you change companies",
+    "pageTitle": "Free for drivers | Detta™",
+    "metaDescription": "Free, private self-help software for drivers dealing with credit card bills, collectors, and other personal debt. Detta never tells your company who signs up."
+  }
+}
