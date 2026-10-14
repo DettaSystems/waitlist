@@ -67,12 +67,12 @@
     .posts span { width:9px; height:100%; background:linear-gradient(90deg,#7E8F8F,#A9B7B7 50%,#7E8F8F); border-radius:0 0 2px 2px; }
     .ground { height:2px; background:var(--line); margin:0 0 26px; }
     .lead { margin:0 0 22px; font-size:19px; color:var(--ink); }
-    .cta { display:flex; align-items:center; justify-content:center; width:100%; max-width:400px; min-height:58px;
+    .cta { display:flex; align-items:center; justify-content:center; width:100%; max-width:400px; min-height:58px; margin:0 auto;
       background:var(--teal); color:#fff; text-decoration:none; font-weight:700; font-size:19px; border-radius:14px; padding:14px 24px;
       transition:background .15s ease; }
     .cta:hover { background:#0A4242; }
     .cta:focus-visible, .submit:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
-    .note { margin:12px 0 0; font-size:15.5px; color:var(--ink-soft); }
+    .note { margin:12px auto 0; text-align:center; text-wrap:balance; font-size:15.5px; color:var(--ink-soft); }
 
     /* Sections */
     section.block { padding:40px 0 0; }
@@ -230,7 +230,7 @@
       <ul class="rows no">
         <li><h3>Not for truck notes or business debt</h3><p>Detta is for personal debts: personal credit cards, medical bills, personal loans, and accounts in collections. It does not cover truck notes, equipment loans, fuel cards, or other business debt. Use one card for both? That is common for owner-operators. Sign up anyway, and email us if you are not sure.</p></li>
         <li><h3>Not a debt settlement company</h3><p>Many debt settlement companies charge 15 to 25 percent of the debt you enroll. Detta does not take a percentage of your debt or of any money you save.</p></li>
-        <li><h3>No bank login. No Social Security number.</h3><p>Only your email is required to sign up. Detta does not ask for your full Social Security number or your bank login, and there is no card to enter.</p></li>
+        <li><h3>Detta never moves your money</h3><p>Only your email is required to sign up, and there is no card to enter. Detta does not ask for your full Social Security number. It never holds your money or takes money to pay your debts. You make your own payments, directly.</p></li>
       </ul>
     </section>
 
@@ -268,7 +268,7 @@
             </div>
             <button type="submit" class="submit" id="joinBtn">Save my spot</button>
             <p class="err" id="joinErr" role="alert"></p>
-            <p class="fineline">Free. No card. No bank login.</p>
+            <p class="fineline">Free. No card needed.</p>
           </form>
         </div>
         <div class="success" id="joinSuccess" hidden tabindex="-1">
@@ -284,7 +284,7 @@
         <h2>How to know this is real</h2>
         <ul>
           <li>Check the address bar. It should say <strong>detta.us</strong>.</li>
-          <li>Only your email is required. No money, no card, no bank login.</li>
+          <li>Only your email is required. No money, no card.</li>
           <li>Nothing to rush. There is no deadline.</li>
         </ul>
       </div>
@@ -302,7 +302,7 @@
       </details>
       <details>
         <summary>Is this a scam?</summary>
-        <p>Fair question, and you should ask it. Detta is built by a team that includes practicing consumer-protection attorneys. We never ask for money to sign up, never ask for your bank login, and never promise to erase your debt. Check that the address bar says detta.us, and email support@detta.us with any question.</p>
+        <p>Fair question, and you should ask it. Detta is built by a team that includes practicing consumer-protection attorneys. We never ask for money to sign up, never take money to pay your debts, and never promise to erase your debt. Check that the address bar says detta.us, and email support@detta.us with any question.</p>
       </details>
       <details>
         <summary>What debt does it cover?</summary>
