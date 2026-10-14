@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Detta poster</title>
+<!-- Print template for <slug>/poster.pdf (US Letter). Built by scripts/partner-page.mjs. -->
+<style>
+  @font-face { font-family:'Fraunces'; font-weight:300 600; src:url(/fonts/fraunces.woff2) format('woff2'); }
+  @font-face { font-family:'DM Sans'; font-weight:300 700; src:url(/fonts/dmsans.woff2) format('woff2'); }
+  @page { size: 8.5in 11in; margin: 0; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; background:#fff; }
+  body { font-family:'DM Sans',system-ui,sans-serif; color:#1A2B2B; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { width:8.5in; height:11in; display:flex; flex-direction:column; padding:0.38in 0.55in 0.28in; overflow:hidden; }
+  .page > * { flex-shrink:0; }
+  .page > .mid { flex-shrink:1; }
+  .brand { align-self:flex-start; height:0.3in; width:auto; display:block; margin:0 0 0.2in; }
+  .sign { background:#0D4F4F; border-radius:0.2in; padding:0.08in; }
+  .face { border:0.035in solid #F4FAF9; border-radius:0.13in; padding:0.16in 0.26in 0.18in; color:#fff; }
+  .for { margin:0 0 0.04in; font-size:15pt; font-weight:500; color:#CFE6E3; }
+  h1 { margin:0; font-weight:700; font-size:48pt; line-height:1; letter-spacing:-0.015em; }
+  .rule { height:0.035in; background:#F4FAF9; border:0; margin:0.16in 0 0.13in; }
+  .subrow { display:flex; justify-content:space-between; align-items:flex-end; }
+  .sub { margin:0; font-size:18pt; font-weight:600; line-height:1.25; }
+  .arrow { width:0.42in; height:0.42in; }
+  .posts { display:flex; justify-content:space-around; padding:0 24%; height:0.26in; }
+  .posts span { height:100%; width:0.1in; background:linear-gradient(90deg,#7E8F8F,#A9B7B7 50%,#7E8F8F); }
+  .ground { height:0.02in; background:#D9E5E5; margin:0 0 0.16in; }
+  .mid { flex:1; display:flex; gap:0.35in; align-items:center; }
+  .points { flex:1; list-style:none; margin:0; padding:0; }
+  .points li { font-size:13pt; line-height:1.28; margin:0 0 0.13in; color:#4A5C5C; }
+  .points strong { display:block; color:#0D4F4F; font-size:15pt; }
+  .qrbox { flex:0 0 3.9in; text-align:center; }
+  .scan { font-size:16pt; font-weight:700; color:#0D4F4F; margin:0 0 0.06in; }
+  .qrwrap { width:3.35in; height:3.35in; margin:0 auto; overflow:hidden; position:relative; background:#fff; border:2px solid #D9E5E5; border-radius:0.12in; }
+  /* qr.svg has a 4-module quiet zone; scale and crop so the code prints about 3.4in wide with white margin kept */
+  .qr { position:absolute; width:4.0in; height:4.0in; left:50%; top:50%; transform:translate(-50%,-50%); display:block; }
+  .type { font-size:14pt; margin:0.06in 0 0; color:#4A5C5C; }
+  .url { display:block; font-size:26pt; font-weight:700; color:#0D4F4F; }
+  .soon { margin:0.1in 0 0.1in; font-size:16pt; font-weight:700; color:#0D4F4F; text-align:center; }
+  .safe { background:#FFF8EA; border-left:0.07in solid #C8922A; border-radius:0.1in; padding:0.1in 0.18in; font-size:12pt; line-height:1.35; }
+  .bottom { padding:0.12in 0 0; font-size:9.5pt; color:#4A5C5C; line-height:1.4; }
+  .bottom p { margin:0 0 0.04in; }
+  .bottom .q { font-size:12.5pt; font-weight:700; color:#1A2B2B; margin-bottom:0.08in; }
+</style>
+</head>
+<body>
+<div class="page">
+  <img class="brand" src="/brand/detta-wordmark.png" alt="Detta" />
+  <div class="sign"><div class="face">
+    <p class="for">{{forLine}}</p>
+    <h1>{{headline}}</h1>
+    <hr class="rule" />
+    <div class="subrow">
+      <p class="sub">Collectors know the rules.<br />Now you will too.</p>
+      <svg class="arrow" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3v24M7 18l10 10 10-10" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div></div>
+  <div class="posts"><span></span><span></span></div>
+  <div class="ground"></div>
+  <div class="mid">
+    <ul class="points">
+      <li><strong>Handle your debt yourself.</strong>Know your rights, send plain-English letters, follow a clear payoff plan.</li>
+      <li><strong>Private from {{company}}.</strong>Detta never tells {{company}} who signs up. Use your own email and phone.</li>
+      <li><strong>Free, no end date.</strong>Full access, and it stays free {{leaveLine}}. No card needed.</li>
+      <li><strong>Personal debt only.</strong>Not truck notes, equipment loans, fuel cards, or business debt.</li>
+    </ul>
+    <div class="qrbox">
+      <p class="scan">Scan with your own phone</p>
+      <div class="qrwrap"><img class="qr" src="/{{slug}}/qr.svg" alt="QR code" /></div>
+      <p class="type">Or type<span class="url">detta.us/{{slug}}</span></p>
+    </div>
+  </div>
+  <p class="soon">Opening soon. Sign up now to save your spot.</p>
+  <div class="safe"><strong>Make sure it is real:</strong> the address should say detta.us. Only your email is required to sign up. No money, no bank login. Use it when parked, never while driving.</div>
+  <div class="bottom">
+    <p class="q">Questions? Email support@detta.us. A real person answers.</p>
+    <p>Detta is not open yet. {{Who}} who sign up are among the first invited. Offered by Detta. {{Company}} does not run it or pay for it. Using it is up to you and has nothing to do with your job.</p>
+    <p>Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
+  </div>
+</div>
+</body>
+</html>
