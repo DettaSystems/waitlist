@@ -1,0 +1,67 @@
+# Uptime check for the Detta app (app.detta.us).
+#
+# Runs every 10 minutes from GitHub (free: this repo is public). Calls the
+# app's public health endpoint, which answers 200 only when the server is up
+# AND can reach the database. If it fails 3 tries in a row, this run fails
+# (GitHub emails the account that owns the schedule) and an issue labeled
+# "uptime" is opened, which notifies repo watchers. When the app is healthy
+# again, the open issue is closed automatically.
+#
+# Lives in the waitlist repo only because public repos get free Actions
+# minutes; it checks nothing in this repo.
+name: App uptime check
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: app-uptime
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check app health (3 tries, 20s apart)
+        id: health
+        run: |
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://app.detta.us/api/health/ready || echo 000)
+            echo "try $i: HTTP $code"
+            if [ "$code" = "200" ]; then echo "ok=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+            sleep 20
+          done
+          echo "ok=false" >> "$GITHUB_OUTPUT"
+          echo "last_code=$code" >> "$GITHUB_OUTPUT"
+
+      - name: Open or close the uptime issue
+        uses: actions/github-script@v7
+        env:
+          OK: ${{ steps.health.outputs.ok }}
+          CODE: ${{ steps.health.outputs.last_code }}
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const open = await github.rest.issues.listForRepo({ owner, repo, state: "open", labels: "uptime" });
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            if (process.env.OK === "true") {
+              for (const issue of open.data) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: issue.number, body: `Back up: health check returned 200. ${runUrl}` });
+                await github.rest.issues.update({ owner, repo, issue_number: issue.number, state: "closed" });
+              }
+              return;
+            }
+            if (open.data.length === 0) {
+              await github.rest.issues.create({
+                owner, repo, labels: ["uptime"],
+                title: "app.detta.us is DOWN",
+                body: `The health check failed 3 times in a row (last HTTP status: ${process.env.CODE}).\n\nCheck Render: https://dashboard.render.com\n\nRun: ${runUrl}\n\nThis issue closes itself when the app is healthy again.`,
+              });
+            }
+            core.setFailed(`app.detta.us health check failed (HTTP ${process.env.CODE})`);
