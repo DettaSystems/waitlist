@@ -1178,7 +1178,6 @@
     section[id],#waitlist{scroll-margin-top:88px}
     .form-card .fc-title{font-family:var(--font-display);font-weight:400;font-size:28px;letter-spacing:-.01em;color:var(--detta-teal);line-height:1.15;text-align:center;margin:0 0 6px}
     .form-card-header p{font-size:13.5px;line-height:1.5;max-width:30ch;margin:0 auto}
-    .sit-label{font-size:13px!important;font-weight:600!important;letter-spacing:0!important;text-transform:none!important;color:var(--detta-ink-mid)!important;margin:0 0 9px!important}
     .path-accent{display:none!important}
     .how-heading h2,.value-heading h2,.trust-heading h2,.faq-heading h2,.calc-head h2,.set-section .calc-head h2{font-family:var(--font-display)!important;font-weight:400!important;font-size:clamp(30px,3.6vw,42px)!important;letter-spacing:-.015em!important;line-height:1.15!important;color:var(--detta-teal)!important}
     .value-heading h2{color:#F7F4EF!important}
@@ -1195,7 +1194,6 @@
     .promise{font-size:13.5px!important;white-space:nowrap}
     @media (max-width:760px){.promises-inner{display:grid!important;grid-template-columns:1fr 1fr;gap:10px 14px!important;justify-items:start}.promise{white-space:normal;font-size:13px!important;align-items:flex-start}}
     .how-heading h2,.value-heading h2,.trust-heading h2,.faq-heading h2,.calc-head h2{text-wrap:balance}
-    .learn-promo h3,.learn-promo .lp-title{font-family:var(--font-display)!important;font-weight:400!important}
     .value-disclaimer{color:rgba(247,244,239,.62)!important}
     .fee-callout .fee-note,.detta-value-strip .detta-sub{color:rgba(247,244,239,.72)!important}
     .footer-brand{display:inline-block;margin:0 auto 14px}
@@ -1217,6 +1215,24 @@
     .calc-takeaway-lead{color:#7A520D!important}
     .footer-inner .footer-disclaimer{font-size:13px!important;color:#5E5E70!important}
     .footer-links a{font-size:13px!important;color:#4A4A5E!important}
+
+    /* "Still have questions?" guide list, styled like the FAQ rows */
+    .guides-more{width:100%;margin:30px 0 0}
+    .gm-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 12px;padding:0 4px}
+    .gm-head h3{font-family:var(--font-display);font-weight:400;font-size:22px;color:var(--detta-teal);margin:0;letter-spacing:-.01em}
+    .gm-all{font-size:14px;font-weight:600;color:var(--detta-teal);text-decoration:underline;text-decoration-color:rgba(13,79,79,.3);text-underline-offset:3px;white-space:nowrap}
+    .gm-all:hover{text-decoration-color:var(--detta-teal)}
+    .gm-list{background:var(--detta-card);border-radius:12px;box-shadow:0 1px 4px rgba(13,79,79,.03),0 2px 10px rgba(13,79,79,.02);overflow:hidden}
+    .gm-row{display:flex;align-items:center;gap:16px;padding:16px 20px;text-decoration:none;border-top:1px solid #EEE9E0;transition:background .15s}
+    .gm-row:first-child{border-top:0}
+    .gm-row:hover{background:#FBF9F5}
+    .gm-row:focus-visible{outline:2px solid var(--detta-teal-mid);outline-offset:-2px}
+    .gm-text{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+    .gm-title{font-size:15px;font-weight:600;color:var(--detta-ink)}
+    .gm-desc{font-size:14px;color:#5E5E70;line-height:1.45}
+    .gm-chev{width:18px;height:18px;flex:none;fill:none;stroke:#8A8A9E;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s,stroke .15s}
+    .gm-row:hover .gm-chev{stroke:var(--detta-teal);transform:translateX(2px)}
+    @media (prefers-reduced-motion:reduce){.gm-row,.gm-chev{transition:none}}
   </style>
   <script type="application/ld+json">
 {
@@ -1444,12 +1460,6 @@
               <form class="wl-form" id="waitlistForm">
                 <!-- Honeypot: bots fill this; humans never see it. Formspree discards on _gotcha. -->
                 <input type="text" name="_gotcha" id="gotchaField" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;pointer-events:none" />
-                <p class="sit-label">What's going on? Tap any that fit.</p>
-                <div class="sit-chips" id="sitChips" role="group" aria-label="What is your situation?">
-                  <button type="button" class="sit-chip" data-sit="collections">Collectors are calling</button>
-                  <button type="button" class="sit-chip" data-sit="credit_card">Behind on credit cards</button>
-                  <button type="button" class="sit-chip" data-sit="multiple">Multiple debts</button>
-                </div>
                 <div class="form-field form-field-1">
                   <input type="email" name="email" class="wl-input" placeholder="Your email address" required id="emailInput" autocomplete="email" />
                 </div>
@@ -1520,16 +1530,6 @@
        HOW IT WORKS
        ═══════════════════════════════════════════════════════════ -->
   <style>
-    .sit-label{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#C8922A;margin:0 0 7px;text-align:center}
-    .sit-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;justify-content:center}
-    .sit-chip{position:relative;font:inherit;font-size:13.5px;font-weight:600;color:#0D4F4F;border:1px solid transparent;border-radius:999px;padding:8px 14px;cursor:pointer;background:linear-gradient(#FDFEFE,#F3FAFA) padding-box,linear-gradient(135deg,rgba(26,112,112,.55),rgba(200,146,42,.55)) border-box;box-shadow:0 1px 4px rgba(13,79,79,.08);transition:transform .15s ease,box-shadow .15s ease,background .18s ease,color .15s ease}
-    .sit-chip::before{content:"\2713";display:inline-block;font-weight:800;color:#E8B84B;max-width:0;opacity:0;transform:scale(.4);overflow:hidden;vertical-align:-1px;transition:max-width .18s ease,opacity .18s ease,transform .22s cubic-bezier(.34,1.56,.64,1),margin .18s ease}
-    .sit-chip:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(13,79,79,.16)}
-    .sit-chip:active{transform:scale(.95)}
-    .sit-chip:focus-visible{outline:2px solid #1A7070;outline-offset:2px}
-    .sit-chip.active{color:#fff;background:linear-gradient(135deg,#0D4F4F,#176962) padding-box,linear-gradient(135deg,#0D4F4F,#C8922A) border-box;box-shadow:0 5px 16px rgba(13,79,79,.30)}
-    .sit-chip.active::before{max-width:14px;opacity:1;transform:scale(1);margin-right:6px}
-    @media (prefers-reduced-motion: reduce){.sit-chip,.sit-chip::before{transition:none}}
     .form-trust{font-size:12.5px;color:#4A5C5C;margin:10px 0 0;text-align:center}
     .ft-check{color:#C8922A;font-weight:700}
     .promises{background:#fff;border-top:1px solid #E5DED2;border-bottom:1px solid #E5DED2}
@@ -1545,31 +1545,6 @@
       <span class="promise"><span class="p-check">&#10003;</span> No spam, unsubscribe anytime</span>
     </div>
   </section>
-  <script>
-  (function () {
-    var chips = document.querySelectorAll(".sit-chip");
-    var sel = document.getElementById("situationSelect");
-    var email = document.getElementById("emailInput");
-    if (!chips.length || !sel) return;
-    chips.forEach(function (c) {
-      c.addEventListener("click", function () {
-        var active = c.classList.contains("active");
-        chips.forEach(function (x) { x.classList.remove("active"); });
-        if (active) { sel.value = ""; sel.selectedIndex = 0; }
-        else {
-          c.classList.add("active");
-          sel.value = c.getAttribute("data-sit");
-          if (email) email.focus();
-        }
-        sel.dispatchEvent(new Event("change", { bubbles: true }));
-        try { if (window.plausible) window.plausible("Situation Chip"); } catch (_) {}
-      });
-    });
-    sel.addEventListener("change", function () {
-      chips.forEach(function (x) { x.classList.toggle("active", x.getAttribute("data-sit") === sel.value); });
-    });
-  })();
-  </script>
 
   <section class="how-section" id="how">
     <div class="how-inner">
@@ -2197,26 +2172,15 @@
             <p class="faq-answer">We're onboarding waitlist members in waves. Join the waitlist and we'll email you as soon as your spot opens. Early joiners get priority access.</p>
           </div>
         </div>
-        <style>
-          .learn-promo{max-width:580px;margin:36px auto 0;background:linear-gradient(180deg,#F3FAFA,#E8F4F4);border:1px solid #D9E5E5;border-radius:18px;padding:28px 28px 26px;text-align:center;box-shadow:0 3px 18px rgba(13,79,79,.07)}
-          .learn-promo .lp-eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#C8922A;margin:0 0 7px}
-          .learn-promo h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:23px;line-height:1.2;color:#0D4F4F;margin:0 0 6px;letter-spacing:-.01em}
-          .learn-promo .lp-sub{font-size:15px;color:#4A5C5C;margin:0 0 18px}
-          .learn-promo .lp-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-          .learn-promo .lp-chip{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#0D4F4F;background:#fff;border:1px solid #D9E5E5;border-radius:999px;padding:9px 16px;text-decoration:none;transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
-          .learn-promo .lp-chip:hover{transform:translateY(-1px);border-color:#1A7070;box-shadow:0 5px 14px rgba(13,79,79,.13)}
-          .learn-promo .lp-chip .lp-dot{width:6px;height:6px;border-radius:50%;background:#C8922A}
-          .learn-promo .lp-all{background:linear-gradient(135deg,#0D4F4F,#1A7070);color:#fff;border-color:transparent;box-shadow:0 2px 10px rgba(13,79,79,.22)}
-          .learn-promo .lp-all:hover{border-color:transparent;filter:brightness(1.06)}
-        </style>
-        <div class="learn-promo">
-          <h3>More questions? We wrote the guides.</h3>
-          <p class="lp-sub">Free and in plain English. No hype, no fine-print traps.</p>
-          <div class="lp-chips">
-            <a class="lp-chip" href="/learn/debt-collector-rights/"><span class="lp-dot"></span>Your rights</a>
-            <a class="lp-chip" href="/learn/do-i-need-a-debt-settlement-company/"><span class="lp-dot"></span>Settlement companies</a>
-            <a class="lp-chip" href="/learn/statute-of-limitations-on-debt/"><span class="lp-dot"></span>Can they still sue you?</a>
-            <a class="lp-chip lp-all" href="/learn/">All guides in Learn &rarr;</a>
+        <div class="guides-more">
+          <div class="gm-head">
+            <h3>Still have questions?</h3>
+            <a class="gm-all" href="/learn/">See all guides</a>
+          </div>
+          <div class="gm-list">
+            <a class="gm-row" href="/learn/debt-collector-rights/"><span class="gm-text"><span class="gm-title">Your rights when a debt collector calls</span><span class="gm-desc">What collectors can and can't do, and how to make the calls stop.</span></span><svg class="gm-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+            <a class="gm-row" href="/learn/do-i-need-a-debt-settlement-company/"><span class="gm-text"><span class="gm-title">Do I need a debt settlement company?</span><span class="gm-desc">An honest look at your options, including doing it yourself.</span></span><svg class="gm-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
+            <a class="gm-row" href="/learn/statute-of-limitations-on-debt/"><span class="gm-text"><span class="gm-title">Can they still sue you over an old debt?</span><span class="gm-desc">How long you can be sued, and what quietly restarts the clock.</span></span><svg class="gm-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
           </div>
         </div>
 
