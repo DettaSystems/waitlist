@@ -165,9 +165,10 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
-  <link rel="stylesheet" href="/site.css?v=2" />
+  <link rel="stylesheet" href="/site.css?v=3" />
 </head>
 <body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="sh-inner">
       <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
@@ -188,7 +189,7 @@
     <a class="ehero-cta" href="#inquire">Talk to the founders <span aria-hidden="true">&rarr;</span></a>
     <span class="ehero-note">Pre-launch. Selecting a small group of launch partners.</span>
   </div></section>
-  <main>
+  <main id="main">
     <p class="sec-eyebrow">The gap</p>
     <h2>Why debt, and why now</h2>
     <p>Debt stress follows people to work: the collector who calls during a shift, the wage garnishment that lands on payroll's desk, the employee too anxious to focus. Most benefits stacks have nothing for that moment. Detta gives employees the tools to handle it themselves: understand their rights, generate the letters, make a plan, and track it through, all in plain English.</p>
@@ -219,7 +220,7 @@
         <input type="text" name="name" id="b2bName" class="b2b-input" placeholder="Your name" autocomplete="name" />
         <input type="email" name="email" id="b2bEmail" class="b2b-input" placeholder="Work email" required autocomplete="email" />
         <input type="text" name="company" id="b2bCompany" class="b2b-input" placeholder="Company" autocomplete="organization" />
-        <select name="orgType" id="b2bType" class="b2b-select">
+        <select name="orgType" id="b2bType" class="b2b-select" aria-label="What are you? (optional)">
           <option value="" disabled selected>What are you? (optional)</option>
           <option value="employer">Employer / HR team</option>
           <option value="benefits_platform">Benefits platform</option>

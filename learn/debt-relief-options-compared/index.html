@@ -128,9 +128,10 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
-  <link rel="stylesheet" href="/site.css?v=2" />
+  <link rel="stylesheet" href="/site.css?v=3" />
 </head>
 <body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="sh-inner">
       <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
@@ -143,7 +144,7 @@
       <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
     </div>
   </header>
-  <main>
+  <main id="main">
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/learn/">Learn</a> &rsaquo; Options compared</nav>
     <h1>Your debt-relief options, compared honestly</h1>
     <p class="meta">From Detta, founded by consumer protection attorneys. Not a law firm &middot; Last updated July 2026 &middot; General education, not legal or financial advice</p>
@@ -168,7 +169,7 @@
     <p>The court process: <strong>Chapter 7</strong> can discharge unsecured debts in a matter of months; <strong>Chapter 13</strong> restructures them into a 3&ndash;5 year plan. It stops collection cold (the "automatic stay"), and it's the honest answer when the math has stopped working. The cost is long credit impact - up to 10 years on a report for Chapter 7 - and it's a decision to make with a <strong>bankruptcy attorney</strong>, many of whom consult free.</p>
 
     <h2>Side by side</h2>
-    <div class="cmp-wrap">
+    <div class="cmp-wrap" tabindex="0" role="region" aria-label="Comparison table of debt-relief options (scrolls sideways on small screens)">
     <table class="cmp">
       <tr><th>Path</th><th>Typical cost</th><th>Debt reduced?</th><th>Credit impact</th><th>Biggest risk</th></tr>
       <tr><td>DIY</td><td>Free (your time)</td><td>Possible - settlements often land at 30&ndash;50%</td><td>Depends how delinquent you already are</td><td>Paying without getting the deal in writing</td></tr>

@@ -413,9 +413,12 @@
     }
     .wl-input::placeholder { color: var(--detta-ink-light); }
     .wl-input:focus, .wl-select:focus {
-      border-color: rgba(13,79,79,0.30);
-      box-shadow: 0 0 0 3px rgba(13,79,79,0.10);
+      border-color: var(--detta-teal);
+      box-shadow: 0 0 0 3px rgba(13,79,79,0.18);
+      outline: 2px solid var(--detta-teal);
+      outline-offset: 1px;
     }
+    .wl-slider:focus-visible { outline: 2px solid var(--detta-teal); outline-offset: 4px; }
     .wl-select {
       appearance: none;
       -webkit-appearance: none;
@@ -1387,7 +1390,7 @@
   <!-- Plausible: privacy-first, cookieless analytics (no consent banner needed; disclose in privacy policy) -->
   <script defer data-domain="detta.us" src="https://plausible.io/js/script.js"></script>
   <script>window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) };</script>
-  <link rel="stylesheet" href="/site.css?v=2" />
+  <link rel="stylesheet" href="/site.css?v=3" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -1468,7 +1471,7 @@
                   <input type="text" name="firstName" class="wl-input" placeholder="First name (optional)" id="nameInput" autocomplete="given-name" />
                 </div>
                 <div class="form-field form-field-3">
-                  <select name="debtSituation" class="wl-select" id="situationSelect">
+                  <select name="debtSituation" class="wl-select" id="situationSelect" aria-label="What is going on with your debt? (optional)">
                     <option value="" disabled selected>What's your situation? (optional)</option>
                     <option value="credit_card">Credit card debt</option>
                     <option value="medical">Medical debt</option>
@@ -2201,7 +2204,7 @@
       <p class="footer-disclaimer">
         Detta™ is self-help software, not a law firm or debt settlement company. Results vary depending on individual circumstances.
       </p>
-      <div class="footer-social" id="footerSocial" aria-label="Detta on social media"></div>
+      <div class="footer-social" id="footerSocial" role="group" aria-label="Detta on social media"></div>
       <div class="footer-links">
         <a href="/learn/">Learn</a>
         <a href="/newsletter/">Newsletter</a>
