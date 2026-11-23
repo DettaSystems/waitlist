@@ -53,7 +53,7 @@
   var html =
     '<div class="dtw-card" role="document">' +
     '<button type="button" class="dtw-close" id="dtwClose" aria-label="Close">×</button>' +
-    '<p class="dtw-eyebrow">Early access</p>' +
+
     '<h2 class="dtw-title" id="dtwTitle">Reserve your spot</h2>' +
     '<p class="dtw-sub">Join the waitlist and we’ll email you the moment your spot opens. No spam, ever.</p>' +
     '<form class="dtw-form" id="dtwForm" novalidate>' +
@@ -64,7 +64,7 @@
     '<option value="" disabled selected>What are you dealing with? (optional)</option>' +
     opts +
     "</select>" +
-    '<button type="submit" class="dtw-submit" id="dtwSubmit">Join the Waitlist</button>' +
+    '<button type="submit" class="dtw-submit" id="dtwSubmit">Join the waitlist</button>' +
     '<p class="dtw-error" id="dtwError" role="alert"></p>' +
     "</form>" +
     '<div class="dtw-success" id="dtwSuccess" hidden>' +
@@ -180,7 +180,7 @@
       function () {
         err.textContent = "Something went wrong. Please try again.";
         btn.disabled = false;
-        btn.textContent = "Join the Waitlist";
+        btn.textContent = "Join the waitlist";
       }
     );
   }

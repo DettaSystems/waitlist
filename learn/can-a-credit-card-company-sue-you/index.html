@@ -121,15 +121,27 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
+  <link rel="stylesheet" href="/site.css?v=1" />
 </head>
-<body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a></div></div>
+<body class="page">
+  <header class="site-header">
+    <div class="sh-inner">
+      <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
+      <nav class="sh-nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#settlement">Settlement planner</a>
+        <a href="/#calculator">Payoff calculator</a>
+        <a href="/learn/" aria-current="page">Guides</a>
+      </nav>
+      <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
+    </div>
+  </header>
   <main>
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/learn/">Learn</a> &rsaquo; Can they sue you?</nav>
     <h1>Can a credit card company actually sue you?</h1>
     <p class="meta">From Detta, founded by consumer protection attorneys. Not a law firm &middot; Last updated June 2026 &middot; General education, not legal advice</p>
 
-    <div class="tldr"><strong>Short version:</strong> Yes, a credit card company or a collector that bought your debt can sue you, but it is not instant and not automatic. They have to file a lawsuit and win a court judgment before anyone can garnish your wages or bank account, and many older debts are past the statute of limitations. The worst thing you can do is ignore a lawsuit. The calmer reality, and what to do, is below.</p>
+    <div class="tldr"><strong>Short version:</strong> Yes, a credit card company or a collector that bought your debt can sue you, but it is not instant and not automatic. They have to file a lawsuit and win a court judgment before anyone can garnish your wages or bank account, and many older debts are past the statute of limitations. The worst thing you can do is ignore a lawsuit. The calmer reality, and what to do, is below.</div>
 
     <h2>Can a credit card company sue you for unpaid debt?</h2>
     <p>Yes. The original credit card company, or more often a debt collector or debt buyer that took over the account, can file a lawsuit over an unpaid balance. But suing costs them time and money, so it is usually a last resort that comes well after the first missed payment, not a snap reaction. Knowing the sequence is what turns fear into a plan.</p>
@@ -161,7 +173,7 @@
     <h2>Can you still negotiate after being sued?</h2>
     <p>Often, yes. Many debt cases settle, sometimes even after a suit is filed, because going to trial costs the other side money too. Responding on time keeps that door open and keeps the pressure balanced. The free <a href="/#settlement">settlement planner</a> can help you think through a realistic offer, and you contact the creditor yourself.</p>
 
-    <div class="callout"><strong>Where Detta fits:</strong> Detta is <strong>self-help software</strong>, not a law firm and not a debt settlement company. It helps you understand your situation and organize your own plan; it does not represent you in court or give legal advice. If you have been sued, talk to a lawyer or your local legal aid office. See also <a href="/learn/debt-collector-rights/">your rights when a debt collector calls</a>.</p>
+    <div class="callout"><strong>Where Detta fits:</strong> Detta is <strong>self-help software</strong>, not a law firm and not a debt settlement company. It helps you understand your situation and organize your own plan; it does not represent you in court or give legal advice. If you have been sued, talk to a lawyer or your local legal aid office. See also <a href="/learn/debt-collector-rights/">your rights when a debt collector calls</a>.</div>
 
     <h2>Common questions</h2>
     <p><strong>Can a credit card company sue you for unpaid debt?</strong> Yes, usually as a last resort after months of missed payments, and only a court judgment lets them garnish.</p>
@@ -197,6 +209,7 @@
     <p class="meta" style="margin-top:28px;border-top:1px solid var(--line);padding-top:18px;">From Detta, founded by consumer protection attorneys. Not a law firm &middot; Last updated June 2026.</p>
   </main>
   <footer><div class="footer-inner">
+    <a href="/" class="footer-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a>
     <p class="footer-disclaimer">Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
     <div class="footer-links">
       <a href="/learn/">Learn</a>

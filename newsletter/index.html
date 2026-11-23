@@ -92,9 +92,21 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
+  <link rel="stylesheet" href="/site.css?v=1" />
 </head>
-<body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a></div></div>
+<body class="page">
+  <header class="site-header">
+    <div class="sh-inner">
+      <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
+      <nav class="sh-nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#settlement">Settlement planner</a>
+        <a href="/#calculator">Payoff calculator</a>
+        <a href="/learn/">Guides</a>
+      </nav>
+      <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
+    </div>
+  </header>
   <main>
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; The Detta Weekly</nav>
     <h1>The Detta Weekly</h1>
@@ -169,6 +181,7 @@
     <div class="callout"><strong>How we write this.</strong> Every claim links to its source. Lawsuits are reported as allegations, not findings, and we don't bash companies: we report, and you decide. Full transparency: Detta builds self-help software for the DIY path, so we're not neutral, and we say so. General education, not legal or financial advice. Detta&trade; is self-help software, not a law firm.</div>
   </main>
   <footer><div class="footer-inner">
+    <a href="/" class="footer-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a>
     <p class="footer-disclaimer">Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
     <div class="footer-links">
       <a href="/learn/">Learn</a>

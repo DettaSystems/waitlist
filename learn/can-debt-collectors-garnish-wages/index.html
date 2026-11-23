@@ -117,9 +117,21 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
+  <link rel="stylesheet" href="/site.css?v=1" />
 </head>
-<body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a></div></div>
+<body class="page">
+  <header class="site-header">
+    <div class="sh-inner">
+      <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
+      <nav class="sh-nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#settlement">Settlement planner</a>
+        <a href="/#calculator">Payoff calculator</a>
+        <a href="/learn/" aria-current="page">Guides</a>
+      </nav>
+      <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
+    </div>
+  </header>
   <main>
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/learn/">Learn</a> &rsaquo; Can they garnish your wages?</nav>
     <h1>Can debt collectors garnish your wages or bank account?</h1>
@@ -195,6 +207,7 @@
     <p class="meta" style="margin-top:28px;border-top:1px solid var(--line);padding-top:18px;">From Detta, founded by consumer protection attorneys. Not a law firm &middot; Last updated July 2026.</p>
   </main>
   <footer><div class="footer-inner">
+    <a href="/" class="footer-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a>
     <p class="footer-disclaimer">Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
     <div class="footer-links">
       <a href="/learn/">Learn</a>

@@ -122,15 +122,27 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
+  <link rel="stylesheet" href="/site.css?v=1" />
 </head>
-<body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a></div></div>
+<body class="page">
+  <header class="site-header">
+    <div class="sh-inner">
+      <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
+      <nav class="sh-nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#settlement">Settlement planner</a>
+        <a href="/#calculator">Payoff calculator</a>
+        <a href="/learn/" aria-current="page">Guides</a>
+      </nav>
+      <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
+    </div>
+  </header>
   <main>
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; <a href="/learn/">Learn</a> &rsaquo; Debt validation letter</nav>
     <h1>How to write a debt validation letter</h1>
     <p class="meta">From Detta, founded by consumer protection attorneys. Not a law firm &middot; Last updated July 2026 &middot; General education, not legal advice</p>
 
-    <div class="tldr"><strong>Short version:</strong> A debt validation letter is a short, written request that makes a debt collector <strong>prove a debt is really yours</strong> before you pay a cent. It is your right under federal law. Send it in writing within <strong>30 days</strong> of the collector's first notice and, on a timely request, they must pause collection until they mail you verification. Many debts that were bought and sold can't be fully verified, which is exactly why it's worth sending one. Below is what your letter needs to include, and how Detta can put it together for you.</p>
+    <div class="tldr"><strong>Short version:</strong> A debt validation letter is a short, written request that makes a debt collector <strong>prove a debt is really yours</strong> before you pay a cent. It is your right under federal law. Send it in writing within <strong>30 days</strong> of the collector's first notice and, on a timely request, they must pause collection until they mail you verification. Many debts that were bought and sold can't be fully verified, which is exactly why it's worth sending one. Below is what your letter needs to include, and how Detta can put it together for you.</div>
 
     <h2>What is a debt validation letter?</h2>
     <p>It is a written request that asks a debt collector to back up its claim: to show that the debt is yours, who it started with, and that the amount is right. The right comes from the federal <strong>Fair Debt Collection Practices Act (FDCPA)</strong>. Sending one is not admitting you owe the money, and it is not refusing to pay. It simply says, calmly, "prove it before we go any further." That matters because debts are often sold from one collector to the next, and the paperwork does not always follow.</p>
@@ -213,6 +225,7 @@
     <p class="meta" style="margin-top:28px;border-top:1px solid var(--line);padding-top:18px;">From Detta, founded by consumer protection attorneys. Not a law firm &middot; Last updated July 2026.</p>
   </main>
   <footer><div class="footer-inner">
+    <a href="/" class="footer-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a>
     <p class="footer-disclaimer">Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
     <div class="footer-links">
       <a href="/learn/">Learn</a>
