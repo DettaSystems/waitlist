@@ -122,7 +122,7 @@ async function makeOg(slug, lines) {
   <rect x="0" y="0" width="1200" height="6" fill="#C8922A"/>
   <text x="80" y="110" font-family="Georgia, serif" font-weight="bold" font-size="40" fill="#C8922A">Detta</text>
   <text x="80" y="300" font-family="Georgia, serif" font-weight="bold" font-size="62" fill="#FBFDFD">${tspans}</text>
-  <text x="80" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9FC6C4">Free, attorney-reviewed guide &#183; detta.us/learn</text>
+  <text x="80" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9FC6C4">Free plain-English guide &#183; detta.us/learn</text>
 </svg>`;
   await sharp(Buffer.from(svg)).png().toFile(path.join(ogDir, `${slug}.png`));
   ok(slug, "og image generated");
@@ -205,7 +205,7 @@ function makeFeed() {
     <link>${BASE}/learn/${slug}/</link>
     <guid isPermaLink="true">${BASE}/learn/${slug}/</guid>
     <pubDate>${rfc822(c.date)}</pubDate>
-    <description>${esc(c.desc)} Free, attorney-reviewed, plain English.</description>
+    <description>${esc(c.desc)} Free and in plain English.</description>
   </item>`
     )
     .join("\n");
@@ -214,7 +214,7 @@ function makeFeed() {
 <channel>
   <title>Detta Learn — resolve your debt yourself</title>
   <link>${BASE}/learn/</link>
-  <description>Free, attorney-reviewed, plain-English guides to understanding and resolving your own debt. Self-help software, not a law firm.</description>
+  <description>Free, plain-English guides to understanding and resolving your own debt. Self-help software, not a law firm.</description>
   <language>en-us</language>
 ${items}
 </channel>
