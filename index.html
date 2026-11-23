@@ -1533,10 +1533,11 @@
   <style>
     .form-trust{font-size:12.5px;color:#4A5C5C;margin:10px 0 0;text-align:center}
     .ft-check{color:#C8922A;font-weight:700}
-    .promises{background:#fff;border-top:1px solid #E5DED2;border-bottom:1px solid #E5DED2}
-    .promises-inner{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center}
+    .promises{position:relative;z-index:1;background:transparent;margin-top:-22px}
+    @media (min-width:768px){.promises{margin-top:-64px}}
+    .promises-inner{max-width:1080px;margin:0 auto;padding:0 24px 32px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center}
     .promise{font-size:14px;font-weight:600;color:#0D4F4F;display:inline-flex;align-items:center;gap:7px}
-    .promise .p-check{width:19px;height:19px;border-radius:50%;background:#E8F4F4;color:#0D4F4F;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+    .promise .p-check{width:19px;height:19px;border-radius:50%;background:rgba(13,79,79,.08);color:#0D4F4F;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
   </style>
   <section class="promises" aria-label="Our promises">
     <div class="promises-inner">
