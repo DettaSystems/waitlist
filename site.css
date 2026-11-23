@@ -3,7 +3,7 @@
    Loaded after each page's own styles. */
 
 /* Header (same on every page) */
-.site-header{position:sticky;top:0;z-index:50;background:rgba(247,244,239,.88);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(10,47,68,.08)}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(249,246,237,.88);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(10,47,68,.08)}
 .sh-inner{max-width:1180px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:32px}
 .sh-brand{display:inline-flex;align-items:center;text-decoration:none}
 .sh-brand img{display:block;height:26px;width:auto}
@@ -32,7 +32,7 @@ body.page{background:#F9F6ED;color:#151E23}
 .page .warn strong{color:#6E5422}
 .page footer .footer-inner{font-size:14px}
 .page .kicker,.page .issue-tag,.page .sec-eyebrow,.page .eyebrow{color:#6E5422}
-.page .ehero .eyebrow,.page .ehero .crumbs,.page .ehero .crumbs a{color:rgba(247,244,239,.82)}
+.page .ehero .eyebrow,.page .ehero .crumbs,.page .ehero .crumbs a{color:rgba(249,246,237,.82)}
 .page .support strong{color:#6E5422}
 footer .footer-links{display:flex;flex-wrap:wrap;align-items:center;gap:9px 22px}
 footer .footer-links a{color:#4E5E66;text-decoration:none}
