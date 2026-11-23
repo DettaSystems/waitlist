@@ -40,3 +40,18 @@ footer .footer-links a:hover{color:#0D4F4F;text-decoration:underline}
 footer .footer-links .fsep{width:1px;height:14px;background:#D8D2C6}
 footer .footer-disclaimer{margin:0 0 12px}
 @media (max-width:640px){footer .footer-links .fsep{display:none}}
+
+/* "Keep reading" at the end of each guide: a tidy list (like the homepage
+   guide list) instead of pills, so long titles wrap cleanly */
+.page .kr{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+.page .kr h2{font-weight:400!important;font-size:22px!important;margin:0 0 12px!important}
+.page .kr-chips{display:flex!important;flex-direction:column;gap:0!important;background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(13,79,79,.04),0 2px 10px rgba(13,79,79,.03);overflow:hidden}
+.page .kr-chip{display:flex!important;align-items:center;justify-content:space-between;gap:16px;border:0!important;border-top:1px solid #EEE9E0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;transform:none!important;padding:15px 20px!important;font-size:15px!important;font-weight:600;line-height:1.4;color:#1A1A2E!important;text-decoration:none}
+.page .kr-chip:first-child{border-top:0!important}
+.page .kr-chip::after{content:"";flex:none;width:7px;height:7px;border-right:2px solid #8A8A9E;border-top:2px solid #8A8A9E;transform:rotate(45deg);margin-right:4px;transition:transform .15s,border-color .15s}
+.page .kr-chip:hover{background:#FBF9F5!important}
+.page .kr-chip:hover::after{border-color:#0D4F4F;transform:translateX(2px) rotate(45deg)}
+.page .kr-chip.kr-all{color:#0D4F4F!important}
+.page .kr-chip:focus-visible{outline:2px solid #1A7070;outline-offset:-2px}
+@media (prefers-reduced-motion:reduce){.page .kr-chip::after{transition:none}}
+.page main h2,.page main h3{line-height:1.25}

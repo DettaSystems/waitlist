@@ -145,7 +145,7 @@ function chipsBlock(slug) {
       <h2>Keep reading</h2>
       <div class="kr-chips">
         ${chips}
-        <a class="kr-chip" href="/learn/">All guides &rarr;</a>
+        <a class="kr-chip kr-all" href="/learn/">See all guides</a>
       </div>
     </div>
 `;
