@@ -166,9 +166,10 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; min-height:44px; }
     .footer-links a:hover { color:var(--teal); }
   </style>
-  <link rel="stylesheet" href="/site.css?v=2" />
+  <link rel="stylesheet" href="/site.css?v=3" />
 </head>
 <body class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="sh-inner sh-solo">
       <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
@@ -192,7 +193,7 @@
     <p class="note">Opening soon. Takes about a minute. Only your email is required.</p>
   </div></section>
 
-  <main class="wrap">
+  <main class="wrap" id="main">
     <section class="privacy" aria-labelledby="privacyH">
       <p class="never" aria-hidden="true">Never.</p>
       <h2 id="privacyH">Detta never tells your company who signs up</h2>
@@ -247,7 +248,7 @@
     </section>
 
     <section class="block">
-      <div class="join" id="join" aria-labelledby="joinH">
+      <div class="join" id="join" role="region" aria-labelledby="joinH">
         <div id="joinFormWrap">
           <h2 id="joinH">Save your spot</h2>
           <p class="join-sub">Free for drivers who sign up here: full access, no end date, and it stays free even if you change companies. No card needed. You will never be charged unless you choose to.</p>

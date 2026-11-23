@@ -55,3 +55,10 @@ footer .footer-disclaimer{margin:0 0 12px}
 .page .kr-chip:focus-visible{outline:2px solid #1A7070;outline-offset:-2px}
 @media (prefers-reduced-motion:reduce){.page .kr-chip::after{transition:none}}
 .page main h2,.page main h3{line-height:1.25}
+
+/* Accessibility (WCAG 2.2 AA): skip link, visible keyboard focus, reduced motion */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:#0D4F4F;color:#fff;padding:10px 16px;border-radius:0 0 8px 0;font-weight:600;text-decoration:none}
+.skip-link:focus{left:0}
+main:focus{outline:none}
+a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid #1A7070;outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
