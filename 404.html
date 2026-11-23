@@ -38,11 +38,24 @@
     .links { margin-top:30px; font-size:15px; }
     .links a { margin:0 10px; }
     footer { border-top:1px solid var(--line); margin-top:24px; }
+    .footer-links { justify-content:center; }
     .footer-inner { max-width:760px; margin:0 auto; padding:24px; color:var(--ink-soft); font-size:13px; text-align:center; }
   </style>
+  <link rel="stylesheet" href="/site.css?v=1" />
 </head>
-<body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a></div></div>
+<body class="page">
+  <header class="site-header">
+    <div class="sh-inner">
+      <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
+      <nav class="sh-nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#settlement">Settlement planner</a>
+        <a href="/#calculator">Payoff calculator</a>
+        <a href="/learn/">Guides</a>
+      </nav>
+      <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
+    </div>
+  </header>
   <main>
     <p class="code">404</p>
     <h1>This page took a wrong turn</h1>
@@ -56,7 +69,19 @@
     </div>
   </main>
   <footer><div class="footer-inner">
-    Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency.
+    <a href="/" class="footer-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a>
+    <p class="footer-disclaimer">Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency.</p>
+    <div class="footer-links">
+      <a href="/learn/">Learn</a>
+      <a href="/newsletter/">Newsletter</a>
+      <a href="/employers/">For employers</a>
+      <span class="fsep"></span>
+      <a href="/trust/">Trust &amp; Safety</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+      <span class="fsep"></span>
+      <a href="mailto:support@detta.us">support@detta.us</a>
+    </div>
   </div></footer>
   <script src="/waitlist-modal.js" defer></script>
 </body>

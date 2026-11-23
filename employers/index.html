@@ -165,9 +165,21 @@
     .footer-links a { color:var(--ink-soft); text-decoration:none; }
     .footer-links a:hover { color:var(--teal); }
   </style>
+  <link rel="stylesheet" href="/site.css?v=1" />
 </head>
-<body>
-  <div class="topbar"><div class="topbar-inner"><a class="brand" href="/"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a></div></div>
+<body class="page">
+  <header class="site-header">
+    <div class="sh-inner">
+      <a href="/" class="sh-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="86" height="26" /></a>
+      <nav class="sh-nav" aria-label="Main">
+        <a href="/#how">How it works</a>
+        <a href="/#settlement">Settlement planner</a>
+        <a href="/#calculator">Payoff calculator</a>
+        <a href="/learn/">Guides</a>
+      </nav>
+      <a href="/#waitlist" class="sh-cta">Join the waitlist</a>
+    </div>
+  </header>
   <section class="ehero"><div class="ehero-inner">
     <nav class="crumbs"><a href="/">Home</a> &rsaquo; For employers</nav>
     <p class="eyebrow">Detta for Employers</p>
@@ -183,7 +195,7 @@
 
     <div class="cardgrid">
       <div class="bcard"><div class="bicon">&#10003;</div><h3>Self-help, not settlement</h3><p>Employees resolve debt themselves with guided tools. Detta never holds their money and never contacts their creditors. Not a law firm, debt-settlement company, or credit-counseling agency.</p></div>
-      <div class="bcard"><div class="bicon">&sect;</div><h3>Founded by consumer protection attorneys</h3><p>Built by founders who practice consumer-protection law. Every guide and template is reviewed for accuracy, with sources employees can check.</p></div>
+      <div class="bcard"><div class="bicon">&sect;</div><h3>Founded by consumer protection attorneys</h3><p>Built by founders who practice consumer-protection law. Every guide cites its sources, so employees can check them.</p></div>
       <div class="bcard"><div class="bicon">&#9829;</div><h3>Made for the hard moments</h3><p>Validation letters, negotiation planning, statute-of-limitations awareness, lawsuit deadlines: the acute problems, not just budgeting basics.</p></div>
     </div>
 
@@ -299,6 +311,7 @@
     <div class="callout"><strong>The fine print, plainly:</strong> Detta&trade; is self-help software, not a law firm, debt-settlement company, or credit-counseling agency. The benefit gives employees tools and general education to resolve their own debt; it is not legal, financial, or tax advice, and no outcome is guaranteed. Employee use is private and voluntary.</div>
   </main>
   <footer><div class="footer-inner">
+    <a href="/" class="footer-brand" aria-label="Detta home"><img src="/brand/detta-wordmark.png" alt="Detta" width="79" height="24" /></a>
     <p class="footer-disclaimer">Detta&trade; is self-help software, not a law firm, debt settlement company, or credit-counseling agency. Not legal, financial, or tax advice. Not an offer of securities. Results vary depending on individual circumstances.</p>
     <div class="footer-links">
       <a href="/learn/">Learn</a>
