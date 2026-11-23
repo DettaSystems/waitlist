@@ -4,9 +4,13 @@
 
 /* Header (same on every page) */
 .site-header{position:sticky;top:0;z-index:50;background:rgba(249,246,237,.88);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(10,47,68,.08)}
-.sh-inner{max-width:1180px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:32px}
+.sh-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;gap:32px}
 .sh-brand{display:inline-flex;align-items:center;text-decoration:none}
-.sh-brand img{display:block;height:26px;width:auto}
+.sh-brand{flex-shrink:0}
+.sh-brand img{display:block;height:38px;width:auto}
+/* Matches the app header (app.detta.us): 72px bar, 1280px max width, 24/32/40px side padding, 38px logo. */
+@media (min-width:640px){.sh-inner{padding:0 32px}}
+@media (min-width:1024px){.sh-inner{padding:0 40px}}
 .sh-nav{display:flex;gap:26px;margin-left:auto}
 .sh-nav a{font-family:'DM Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:#4E5E66;text-decoration:none;padding:6px 0;border-bottom:1.5px solid transparent;transition:color .15s,border-color .15s}
 .sh-nav a:hover,.sh-nav a[aria-current="page"]{color:#0A2F44;border-bottom-color:#C29A4A}
