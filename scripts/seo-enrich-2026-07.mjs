@@ -120,7 +120,7 @@ async function makeOg(slug, lines) {
   const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="#0A2F44"/>
   <rect x="0" y="0" width="1200" height="6" fill="#C29A4A"/>
-  <text x="80" y="110" font-family="Georgia, serif" font-weight="bold" font-size="40" fill="#C29A4A">Detta</text>
+  <text x="80" y="110" font-family="Georgia, serif" font-weight="bold" font-size="40" fill="#F9F6ED">Detta</text>
   <text x="80" y="300" font-family="Georgia, serif" font-weight="bold" font-size="62" fill="#FBFCFD">${tspans}</text>
   <text x="80" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9FB6C4">Free plain-English guide &#183; detta.us/learn</text>
 </svg>`;
