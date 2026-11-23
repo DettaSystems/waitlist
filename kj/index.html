@@ -13,7 +13,7 @@
   <title>Free for drivers | Detta&trade;</title>
   <meta name="description" content="Free, private self-help software for drivers dealing with credit card bills, collectors, and other personal debt. Detta never tells your company who signs up." />
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#0D4F4F" />
+  <meta name="theme-color" content="#0A2F44" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Free for drivers | Detta&trade;" />
   <meta property="og:description" content="Free, private self-help software for drivers dealing with credit card bills, collectors, and other personal debt. Detta never tells your company who signs up." />
@@ -38,8 +38,8 @@
       src: url(/fonts/dmsans.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
     :root {
       --serif:'Fraunces',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
-      --teal:#0D4F4F; --teal-mid:#1A7070; --wash:#EEF6F5; --ink:#1A2B2B; --ink-soft:#4A5C5C;
-      --line:#D9E5E5; --bg:#FBFDFD; --gold:#C8922A; --gold-ink:#8A6418; --post:#8FA0A0;
+      --teal:#0A2F44; --teal-mid:#1D4A63; --wash:#EEF6F5; --ink:#151E23; --ink-soft:#4E5E66;
+      --line:#D9E2E8; --bg:#FBFCFD; --gold:#C29A4A; --gold-ink:#8A6418; --post:#8FA0A0;
     }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
@@ -55,22 +55,22 @@
 
     /* Hero: a highway guide sign */
     .hero { padding:18px 0 44px; }
-    .sign { background:var(--teal); border-radius:18px; padding:7px; box-shadow:0 18px 40px -18px rgba(13,79,79,.55); }
-    .sign-face { border:3px solid #F4FAF9; border-radius:12px; padding:20px 22px 22px; color:#fff; }
-    .sign-for { margin:0 0 6px; font-size:16px; font-weight:500; color:#CFE6E3; }
+    .sign { background:var(--teal); border-radius:18px; padding:7px; box-shadow:0 18px 40px -18px rgba(10,47,68,.55); }
+    .sign-face { border:3px solid #F3F6F8; border-radius:12px; padding:20px 22px 22px; color:#fff; }
+    .sign-for { margin:0 0 6px; font-size:16px; font-weight:500; color:#D2DEE6; }
     .sign h1 { margin:0; font-family:var(--sans); font-weight:700; font-size:clamp(40px, 11.5vw, 64px); line-height:1.02; letter-spacing:-0.015em; color:#fff; }
-    .sign-rule { height:3px; background:#F4FAF9; border:0; margin:18px 0 16px; border-radius:2px; }
+    .sign-rule { height:3px; background:#F3F6F8; border:0; margin:18px 0 16px; border-radius:2px; }
     .sign-sub p { margin:0; font-size:clamp(19px, 5.1vw, 24px); font-weight:600; line-height:1.3; color:#fff; }
     .sign-sub .line2 { display:flex; align-items:center; justify-content:space-between; gap:12px; }
     .sign-arrow { flex:0 0 auto; width:24px; height:24px; }
     .posts { display:flex; justify-content:space-around; padding:0 22%; height:30px; }
-    .posts span { width:9px; height:100%; background:linear-gradient(90deg,#7E8F8F,#A9B7B7 50%,#7E8F8F); border-radius:0 0 2px 2px; }
+    .posts span { width:9px; height:100%; background:linear-gradient(90deg,#75848C,#A9B7B7 50%,#75848C); border-radius:0 0 2px 2px; }
     .ground { height:2px; background:var(--line); margin:0 0 26px; }
     .lead { margin:0 0 22px; font-size:19px; color:var(--ink); }
     .cta { display:flex; align-items:center; justify-content:center; width:100%; max-width:400px; min-height:58px; margin:0 auto;
       background:var(--teal); color:#fff; text-decoration:none; font-weight:700; font-size:19px; border-radius:14px; padding:14px 24px;
       transition:background .15s ease; }
-    .cta:hover { background:#0A4242; }
+    .cta:hover { background:#072233; }
     .cta:focus-visible, .submit:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
     .note { margin:12px auto 0; text-align:center; text-wrap:balance; font-size:15.5px; color:var(--ink-soft); }
 
@@ -104,29 +104,29 @@
     .steps { list-style:none; margin:8px 0 0; padding:0; counter-reset:mile; }
     .steps li { counter-increment:mile; display:grid; grid-template-columns:38px 1fr; gap:16px; align-items:start; padding:0 0 18px; }
     .marker { width:38px; height:50px; background:var(--teal); border-radius:6px; padding:3px; }
-    .marker span { display:flex; align-items:center; justify-content:center; height:100%; border:2px solid #F4FAF9; border-radius:4px;
+    .marker span { display:flex; align-items:center; justify-content:center; height:100%; border:2px solid #F3F6F8; border-radius:4px;
       color:#fff; font-weight:700; font-size:20px; }
     .marker span::before { content:counter(mile); }
     .steps p { margin:0; font-size:17px; color:var(--ink-soft); }
 
     /* Join */
     .join { background:#fff; border:1px solid var(--line); border-top:5px solid var(--teal); border-radius:18px; padding:26px 20px 22px;
-      box-shadow:0 10px 30px -14px rgba(13,79,79,.25); scroll-margin-top:16px; }
+      box-shadow:0 10px 30px -14px rgba(10,47,68,.25); scroll-margin-top:16px; }
     .join-sub { font-size:17px; color:var(--ink-soft); margin:0 0 20px; }
     .field { margin:0 0 16px; }
     .field label, .sit-label { display:block; font-weight:700; font-size:16px; color:var(--ink); margin:0 0 6px; }
     .opt { font-weight:500; color:var(--ink-soft); }
-    .input { width:100%; font:inherit; font-size:18px; min-height:52px; padding:12px 14px; border:1.5px solid #B9CFCF; border-radius:12px; background:#fff; color:var(--ink); }
-    .input:focus { outline:none; border-color:var(--teal-mid); box-shadow:0 0 0 3px rgba(26,112,112,.2); }
+    .input { width:100%; font:inherit; font-size:18px; min-height:52px; padding:12px 14px; border:1.5px solid #B9C8D2; border-radius:12px; background:#fff; color:var(--ink); }
+    .input:focus { outline:none; border-color:var(--teal-mid); box-shadow:0 0 0 3px rgba(29,74,99,.2); }
     .hint { font-size:15px; color:var(--ink-soft); margin:6px 0 0; }
     .sit-chips { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; }
     .sit-chip { font:inherit; font-size:16px; font-weight:600; color:var(--teal); min-height:48px; padding:10px 16px;
-      border:1.5px solid #B9CFCF; border-radius:999px; background:#fff; cursor:pointer; }
+      border:1.5px solid #B9C8D2; border-radius:999px; background:#fff; cursor:pointer; }
     .sit-chip[aria-pressed="true"] { background:var(--teal); border-color:var(--teal); color:#fff; }
     .sit-chip:focus-visible { outline:3px solid var(--teal-mid); outline-offset:2px; }
     .submit { font:inherit; font-weight:700; font-size:19px; color:#fff; width:100%; min-height:58px; background:var(--teal);
       border:0; border-radius:14px; padding:14px 22px; cursor:pointer; }
-    .submit:hover { background:#0A4242; }
+    .submit:hover { background:#072233; }
     .submit:disabled { opacity:.7; cursor:default; }
     .fineline { font-size:15px; color:var(--ink-soft); text-align:center; margin:10px 0 0; }
     .err { color:#A33A24; font-size:16px; margin:10px 0 0; }
@@ -135,7 +135,7 @@
     .hp { position:absolute!important; left:-9999px!important; width:1px; height:1px; opacity:0; pointer-events:none; }
 
     /* Is it real */
-    .real { border-left:5px solid var(--gold); background:#FFF8EA; border-radius:12px; padding:18px 20px; }
+    .real { border-left:5px solid var(--gold); background:#FBF6EA; border-radius:12px; padding:18px 20px; }
     .real h2 { font-size:22px; margin:0 0 8px; color:var(--gold-ink); }
     .real ul { margin:0; padding-left:20px; }
     .real li { font-size:17px; margin:5px 0; }

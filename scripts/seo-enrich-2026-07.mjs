@@ -118,11 +118,11 @@ async function makeOg(slug, lines) {
     .map((l, i) => `<tspan x="80" dy="${i === 0 ? 0 : 76}">${esc(l)}</tspan>`)
     .join("");
   const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#0D4F4F"/>
-  <rect x="0" y="0" width="1200" height="6" fill="#C8922A"/>
-  <text x="80" y="110" font-family="Georgia, serif" font-weight="bold" font-size="40" fill="#C8922A">Detta</text>
-  <text x="80" y="300" font-family="Georgia, serif" font-weight="bold" font-size="62" fill="#FBFDFD">${tspans}</text>
-  <text x="80" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9FC6C4">Free plain-English guide &#183; detta.us/learn</text>
+  <rect width="1200" height="630" fill="#0A2F44"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#C29A4A"/>
+  <text x="80" y="110" font-family="Georgia, serif" font-weight="bold" font-size="40" fill="#C29A4A">Detta</text>
+  <text x="80" y="300" font-family="Georgia, serif" font-weight="bold" font-size="62" fill="#FBFCFD">${tspans}</text>
+  <text x="80" y="540" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#9FB6C4">Free plain-English guide &#183; detta.us/learn</text>
 </svg>`;
   await sharp(Buffer.from(svg)).png().toFile(path.join(ogDir, `${slug}.png`));
   ok(slug, "og image generated");
@@ -135,11 +135,11 @@ function chipsBlock(slug) {
     .map((r) => `<a class="kr-chip" href="/learn/${r}/">${esc(ARTICLES[r].short)}</a>`)
     .join("\n        ");
   return `    <style>
-      .kr{margin:34px 0 0;padding:22px 24px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 12px rgba(13,79,79,0.05)}
+      .kr{margin:34px 0 0;padding:22px 24px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 12px rgba(10,47,68,0.05)}
       .kr h2{margin:0 0 12px;font-size:20px}
       .kr-chips{display:flex;flex-wrap:wrap;gap:10px}
       .kr-chip{display:inline-flex;align-items:center;font-size:14px;font-weight:600;color:var(--teal);background:var(--teal-light);border:1px solid var(--line);border-radius:999px;padding:8px 15px;text-decoration:none;transition:transform .12s ease,box-shadow .12s ease}
-      .kr-chip:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(13,79,79,0.13)}
+      .kr-chip:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(10,47,68,0.13)}
     </style>
     <div class="kr">
       <h2>Keep reading</h2>

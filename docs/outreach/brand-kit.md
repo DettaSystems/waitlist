@@ -62,7 +62,7 @@ The site's structured data (`index.html`) lists a `sameAs` array. **Every offici
 | Product Hunt | `[launch-day]` | ◻️ later | ◻️ add after |
 | Trustpilot | `[reserve only]` | ◻️ reserve, seed no reviews | optional |
 
-> **Logo:** use `https://www.detta.us/logo.png` everywhere. **Brand color:** teal `#0D4F4F`. **Fonts:** Fraunces (display), DM Sans (body).
+> **Logo:** use `https://www.detta.us/logo.png` everywhere. **Brand color:** teal `#0A2F44`. **Fonts:** Fraunces (display), DM Sans (body).
 
 ## Hard rules (compliance)
 
